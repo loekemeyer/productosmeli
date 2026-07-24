@@ -3,25 +3,11 @@
 <style>
   :root {
     color-scheme: light dark;
-    --bg: #F6F1E9;
-    --surface: #FFFFFF;
-    --surface-2: #FBF6EF;
-    --line: #E7DCCB;
-    --ink: #29231C;
-    --ink-soft: #6C6154;
-    --ink-faint: #9A8E7E;
-    --accent: #B26A1B;
-    --accent-soft: #F1E2C8;
-    --accent-ink: #77450F;
-    --intl: #2E7D74;
-    --intl-soft: #D9EBE8;
-    --intl-ink: #1C5751;
-    --hi: #A64B2A;      /* confianza alta */
-    --hi-soft: #F3DFD6;
-    --mid: #B26A1B;     /* media */
-    --mid-soft: #F1E2C8;
-    --lo: #6E7C86;      /* baja */
-    --lo-soft: #E3E7EA;
+    --bg: #F6F1E9; --surface: #FFFFFF; --surface-2: #FBF6EF; --line: #E7DCCB;
+    --ink: #29231C; --ink-soft: #6C6154; --ink-faint: #9A8E7E;
+    --accent: #B26A1B; --accent-soft: #F1E2C8; --accent-ink: #77450F;
+    --intl: #2E7D74; --intl-soft: #D9EBE8; --intl-ink: #1C5751;
+    --local: #A65D2A; --local-soft: #F3E3D4; --local-ink: #7A3F16;
     --shadow: 0 1px 2px rgba(41,35,28,.05), 0 10px 30px rgba(41,35,28,.08);
     --radius: 14px;
     --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -32,8 +18,7 @@
       --ink: #F0E8DB; --ink-soft: #B5A895; --ink-faint: #877B69;
       --accent: #DDA24A; --accent-soft: #382C17; --accent-ink: #EEC783;
       --intl: #6FC0B4; --intl-soft: #1C302D; --intl-ink: #9CD8CE;
-      --hi: #E08461; --hi-soft: #3A2319; --mid: #DDA24A; --mid-soft: #382C17;
-      --lo: #99A5AE; --lo-soft: #292E32;
+      --local: #E0965E; --local-soft: #38271A; --local-ink: #F0BE90;
       --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 32px rgba(0,0,0,.4);
     }
   }
@@ -42,7 +27,7 @@
     --ink: #29231C; --ink-soft: #6C6154; --ink-faint: #9A8E7E;
     --accent: #B26A1B; --accent-soft: #F1E2C8; --accent-ink: #77450F;
     --intl: #2E7D74; --intl-soft: #D9EBE8; --intl-ink: #1C5751;
-    --hi: #A64B2A; --hi-soft: #F3DFD6; --mid: #B26A1B; --mid-soft: #F1E2C8; --lo: #6E7C86; --lo-soft: #E3E7EA;
+    --local: #A65D2A; --local-soft: #F3E3D4; --local-ink: #7A3F16;
     --shadow: 0 1px 2px rgba(41,35,28,.05), 0 10px 30px rgba(41,35,28,.08);
   }
   :root[data-theme="dark"] {
@@ -50,245 +35,246 @@
     --ink: #F0E8DB; --ink-soft: #B5A895; --ink-faint: #877B69;
     --accent: #DDA24A; --accent-soft: #382C17; --accent-ink: #EEC783;
     --intl: #6FC0B4; --intl-soft: #1C302D; --intl-ink: #9CD8CE;
-    --hi: #E08461; --hi-soft: #3A2319; --mid: #DDA24A; --mid-soft: #382C17; --lo: #99A5AE; --lo-soft: #292E32;
+    --local: #E0965E; --local-soft: #38271A; --local-ink: #F0BE90;
     --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 32px rgba(0,0,0,.4);
   }
-
   * { box-sizing: border-box; }
   body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--sans); line-height: 1.5; -webkit-font-smoothing: antialiased; }
-  .wrap { max-width: 900px; margin: 0 auto; padding: clamp(20px, 4vw, 44px) 20px 64px; }
+  .wrap { max-width: 940px; margin: 0 auto; padding: clamp(20px,4vw,44px) 20px 64px; }
 
   .demo-banner { display: none; background: var(--accent-soft); color: var(--accent-ink); border: 1px solid var(--accent); border-radius: 11px; padding: 11px 15px; font-size: .84rem; margin-bottom: 20px; }
-  .demo-banner b { font-weight: 700; }
   body.is-demo .demo-banner { display: block; }
 
-  header.top { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 22px; }
+  header.top { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 20px; }
   .brand { display: flex; align-items: center; gap: 13px; }
-  .mark { width: 42px; height: 42px; border-radius: 12px; flex: none; background: linear-gradient(150deg, var(--accent), var(--accent-ink)); display: grid; place-items: center; box-shadow: var(--shadow); position: relative; }
+  .mark { width: 42px; height: 42px; border-radius: 12px; flex: none; background: linear-gradient(150deg,var(--accent),var(--accent-ink)); display: grid; place-items: center; box-shadow: var(--shadow); position: relative; }
   .mark::before { content: ""; width: 15px; height: 15px; border: 2.5px solid #FFF; border-radius: 50%; }
   .mark::after { content: ""; position: absolute; width: 8px; height: 2.5px; background: #FFF; border-radius: 2px; transform: rotate(45deg); right: 9px; bottom: 10px; }
   .brand h1 { font-size: 1.34rem; margin: 0; letter-spacing: -.02em; font-weight: 660; }
   .brand p { margin: 1px 0 0; font-size: .8rem; color: var(--ink-soft); }
-  .theme-btn { border: 1px solid var(--line); background: var(--surface); color: var(--ink-soft); width: 40px; height: 40px; border-radius: 11px; cursor: pointer; font-size: 1rem; display: grid; place-items: center; flex: none; transition: border-color .15s, color .15s, transform .1s; }
+  .theme-btn { border: 1px solid var(--line); background: var(--surface); color: var(--ink-soft); width: 40px; height: 40px; border-radius: 11px; cursor: pointer; font-size: 1rem; display: grid; place-items: center; flex: none; transition: border-color .15s,color .15s,transform .1s; }
   .theme-btn:hover { color: var(--ink); border-color: var(--accent); }
   .theme-btn:active { transform: scale(.94); }
 
-  .meta-row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; }
   .chip { display: inline-flex; align-items: center; gap: 7px; background: var(--surface); border: 1px solid var(--line); border-radius: 99px; padding: 7px 14px; font-size: .82rem; color: var(--ink-soft); box-shadow: var(--shadow); }
   .chip b { color: var(--ink); font-weight: 650; font-variant-numeric: tabular-nums; }
-  .chip .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--intl); }
 
-  .controls { display: flex; gap: 10px; margin-bottom: 18px; flex-wrap: wrap; }
-  #search { flex: 1; min-width: 200px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 11px; padding: 12px 15px; font-size: .96rem; font-family: inherit; transition: border-color .15s, box-shadow .15s; }
-  #search::placeholder { color: var(--ink-faint); }
+  .tabs { display: flex; gap: 6px; background: var(--surface); border: 1px solid var(--line); padding: 5px; border-radius: 13px; margin-bottom: 18px; box-shadow: var(--shadow); }
+  .tabs button { flex: 1; border: none; background: transparent; color: var(--ink-soft); cursor: pointer; font-family: inherit; padding: 10px 12px; border-radius: 9px; font-size: .9rem; font-weight: 600; transition: all .15s; display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .tabs button .n { font-variant-numeric: tabular-nums; background: var(--surface-2); border-radius: 99px; padding: 1px 9px; font-size: .8rem; }
+  .tabs button[aria-selected="true"] { background: var(--surface-2); color: var(--ink); box-shadow: var(--shadow); }
+  .tabs button[aria-selected="true"][data-tab="only"] { color: var(--intl-ink); }
+  .tabs button[aria-selected="true"][data-tab="local"] { color: var(--local-ink); }
+
+  .controls { display: flex; gap: 10px; margin-bottom: 16px; }
+  #search { flex: 1; border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 11px; padding: 11px 15px; font-size: .95rem; font-family: inherit; }
   #search:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
-  .sort { border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 11px; padding: 0 14px; font-size: .9rem; font-family: inherit; cursor: pointer; }
 
   .list { display: grid; gap: 12px; }
-  .card { display: grid; grid-template-columns: 84px 1fr auto; gap: 16px; align-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 15px; box-shadow: var(--shadow); transition: transform .12s, border-color .15s; }
-  .card:hover { border-color: var(--accent); }
+  .card { display: grid; grid-template-columns: 84px 1fr auto; gap: 16px; align-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 15px; box-shadow: var(--shadow); }
   .thumb { width: 84px; height: 84px; border-radius: 10px; object-fit: cover; background: var(--surface-2); border: 1px solid var(--line); }
   .thumb-fallback { display: grid; place-items: center; font-size: 1.6rem; color: var(--ink-faint); }
   .info { min-width: 0; }
-  .title { font-size: .98rem; font-weight: 600; letter-spacing: -.01em; margin: 0 0 6px; line-height: 1.35; }
-  .badges { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 7px; }
+  .title { font-size: .96rem; font-weight: 600; margin: 0 0 6px; line-height: 1.35; }
   .badge { font-size: .68rem; font-weight: 650; text-transform: uppercase; letter-spacing: .05em; padding: 3px 9px; border-radius: 99px; display: inline-flex; align-items: center; gap: 4px; }
   .badge.intl { background: var(--intl-soft); color: var(--intl-ink); }
-  .badge.conf-alta { background: var(--hi-soft); color: var(--hi); }
-  .badge.conf-media { background: var(--mid-soft); color: var(--mid); }
-  .badge.conf-baja { background: var(--lo-soft); color: var(--lo); }
-  .signals { font-size: .8rem; color: var(--ink-soft); }
-  .signals span { white-space: nowrap; }
-  .signals span::after { content: " · "; color: var(--ink-faint); }
-  .signals span:last-child::after { content: ""; }
   .price-col { text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 9px; }
-  .price { font-size: 1.12rem; font-weight: 680; letter-spacing: -.02em; font-variant-numeric: tabular-nums; white-space: nowrap; }
-  .price small { font-size: .7rem; color: var(--ink-faint); font-weight: 600; display: block; text-transform: uppercase; letter-spacing: .05em; }
-  .go { text-decoration: none; background: var(--accent); color: #FFF; font-size: .84rem; font-weight: 600; padding: 8px 15px; border-radius: 9px; white-space: nowrap; transition: filter .15s, transform .1s; }
-  .go:hover { filter: brightness(1.07); }
-  .go:active { transform: scale(.97); }
+  .price { font-size: 1.08rem; font-weight: 680; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .price small { font-size: .68rem; color: var(--ink-faint); font-weight: 600; display: block; text-transform: uppercase; }
+  .go { text-decoration: none; background: var(--accent); color: #FFF; font-size: .82rem; font-weight: 600; padding: 8px 14px; border-radius: 9px; white-space: nowrap; transition: filter .15s,transform .1s; }
+  .go:hover { filter: brightness(1.07); } .go:active { transform: scale(.97); }
 
-  .empty { text-align: center; padding: 60px 20px; color: var(--ink-faint); }
-  .empty .ico { font-size: 2.4rem; opacity: .5; }
-  .empty p { margin: 12px 0 0; font-size: .95rem; }
+  .cmp { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+  .cmp-head { display: flex; justify-content: space-between; align-items: center; padding: 9px 15px; background: var(--surface-2); border-bottom: 1px solid var(--line); font-size: .76rem; color: var(--ink-soft); }
+  .cmp-head b { color: var(--ink); font-variant-numeric: tabular-nums; }
+  .cmp-body { display: grid; grid-template-columns: 1fr 1fr; }
+  .side { padding: 15px; display: flex; gap: 13px; min-width: 0; }
+  .side:first-child { border-right: 1px solid var(--line); }
+  .side .lbl { font-size: .66rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 6px; display: inline-block; }
+  .side.imp .lbl { color: var(--intl-ink); } .side.loc .lbl { color: var(--local-ink); }
+  .side .st { width: 68px; height: 68px; border-radius: 9px; object-fit: cover; background: var(--surface-2); border: 1px solid var(--line); flex: none; }
+  .side .sinfo { min-width: 0; }
+  .side .stitle { font-size: .86rem; font-weight: 550; line-height: 1.3; margin: 2px 0 7px; }
+  .side .sprice { font-size: 1rem; font-weight: 680; font-variant-numeric: tabular-nums; margin-bottom: 8px; }
+  .side .go { font-size: .76rem; padding: 6px 12px; }
+  .side.imp .go { background: var(--intl); } .side.loc .go { background: var(--local); }
 
-  .about { margin-top: 46px; border-top: 1px solid var(--line); padding-top: 26px; }
-  .about h3 { font-size: .8rem; text-transform: uppercase; letter-spacing: .11em; color: var(--ink-soft); font-weight: 600; margin: 0 0 12px; }
-  .about p { margin: 0 0 10px; font-size: .88rem; color: var(--ink-soft); max-width: 68ch; }
-  .about code { background: var(--surface-2); border: 1px solid var(--line); border-radius: 5px; padding: 1px 6px; font-size: .82em; }
+  .empty { text-align: center; padding: 54px 20px; color: var(--ink-faint); }
+  .empty .ico { font-size: 2.4rem; opacity: .5; } .empty p { margin: 12px 0 0; font-size: .95rem; }
 
-  footer { margin-top: 34px; text-align: center; color: var(--ink-faint); font-size: .78rem; }
+  .about { margin-top: 40px; border-top: 1px solid var(--line); padding-top: 22px; }
+  .about h3 { font-size: .8rem; text-transform: uppercase; letter-spacing: .11em; color: var(--ink-soft); font-weight: 600; margin: 0 0 10px; }
+  .about p { margin: 0 0 8px; font-size: .86rem; color: var(--ink-soft); max-width: 70ch; }
+  footer { margin-top: 30px; text-align: center; color: var(--ink-faint); font-size: .78rem; }
 
-  @media (max-width: 620px) {
+  @media (max-width: 640px) {
     .card { grid-template-columns: 64px 1fr; grid-template-areas: "thumb info" "price price"; }
     .thumb { width: 64px; height: 64px; }
     .price-col { grid-area: price; flex-direction: row; justify-content: space-between; align-items: center; width: 100%; border-top: 1px solid var(--line); padding-top: 11px; }
+    .cmp-body { grid-template-columns: 1fr; }
+    .side:first-child { border-right: none; border-bottom: 1px solid var(--line); }
   }
   @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
   :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 </style>
 
 <div class="wrap">
-  <div class="demo-banner" id="demo">
-    <b>Vista previa con datos de ejemplo.</b> Aún no se conectó a Mercado Libre — estas fichas son ficticias y solo muestran cómo se verá el panel. Cuando el agente corra a diario en GitHub Actions, este mismo panel mostrará resultados reales.
-  </div>
+  <div class="demo-banner" id="demo"><b>Vista previa con datos de ejemplo.</b> Cuando el radar corra en tu PC, este panel mostrará resultados reales.</div>
 
   <header class="top">
     <div class="brand">
       <div class="mark" aria-hidden="true"></div>
       <div>
         <h1>Radar Importados</h1>
-        <p>Bazar y cocina · solo con envío internacional · Mercado Libre Argentina</p>
+        <p>Bazar y cocina · Mercado Libre Argentina</p>
       </div>
     </div>
     <button class="theme-btn" id="theme" title="Cambiar tema" aria-label="Cambiar tema">◐</button>
   </header>
 
   <div class="meta-row">
-    <span class="chip"><span class="dot"></span> <b id="c-count">0</b> artículos importados</span>
+    <span class="chip"><b id="c-only">0</b> solo importados</span>
+    <span class="chip"><b id="c-local">0</b> también local</span>
     <span class="chip">Actualizado: <b id="c-date">—</b></span>
-    <span class="chip">Términos vigilados: <b id="c-terms">0</b></span>
+  </div>
+
+  <div class="tabs" role="tablist">
+    <button data-tab="only" role="tab" aria-selected="true">Solo importados <span class="n" id="t-only">0</span></button>
+    <button data-tab="local" role="tab" aria-selected="false">También local <span class="n" id="t-local">0</span></button>
   </div>
 
   <div class="controls">
-    <input id="search" type="text" placeholder="Filtrar por nombre… (ej: pelador, colador, molde)" autocomplete="off" />
-    <select class="sort" id="sort" aria-label="Ordenar">
-      <option value="conf">Mayor confianza</option>
-      <option value="price-asc">Precio: menor a mayor</option>
-      <option value="price-desc">Precio: mayor a menor</option>
-      <option value="title">Nombre (A–Z)</option>
-    </select>
+    <input id="search" type="text" placeholder="Filtrar por nombre…" autocomplete="off" />
   </div>
 
   <div class="list" id="list"></div>
 
   <section class="about">
-    <h3>Cómo funciona</h3>
-    <p>Cada día, un agente automático busca en Mercado Libre Argentina términos de bazar y cocina, y conserva solo los artículos que <b>únicamente se consiguen por envío internacional</b> (productos importados / Cross-Border Trade). Para cada uno evalúa varias señales —etiqueta de envío internacional, vendedor importador, origen y moneda— y le asigna un nivel de confianza.</p>
-    <p>Los datos se guardan en <code>data.json</code> y este panel los muestra. Un nivel de confianza <b>alta</b> significa que varias señales coinciden; <b>baja</b> es un candidato a revisar manualmente antes de confiar.</p>
+    <h3>Cómo se decide</h3>
+    <p>Para cada producto importado, el radar lo busca también en la oferta normal de Mercado Libre y compara los títulos (qué tan parecidas son las palabras) y el precio. Si encuentra uno bastante parecido en el país, lo pasa a <b>"También local"</b> con la publicación local al lado, para que compares. Si no, queda en <b>"Solo importados"</b>.</p>
+    <p>Es una estimación: nunca coinciden exactamente el título, el vendedor ni la foto, así que cada par muestra un <b>puntaje de parecido</b>. A mayor puntaje, más probable que sea el mismo producto.</p>
   </section>
 
-  <footer id="foot">Radar Importados · panel estático regenerado a diario</footer>
+  <footer>Radar Importados · se actualiza desde tu PC</footer>
 </div>
 
 <script>
 (function () {
   var SAMPLE = {
     generated_at: "2026-07-24T09:00:00-03:00",
-    site: "MLA",
-    query_terms: ["pelador mango madera","colador chino","molde silicona","rallador tambor","mortero granito","exprimidor cítricos","tabla bambú","set cuchillos damasco"],
-    items: [
-      { title: "Pelador de Papas y Verduras con Mango de Madera Ergonómico Importado", price: 8990, currency: "ARS", permalink: "https://articulo.mercadolibre.com.ar/MLA-ejemplo-pelador", thumbnail: "", seller: "GlobalKitchen Store", confidence: "alta", signals: ["Envío internacional","Vendedor del exterior","Origen: China"] },
-      { title: "Colador Chino Cónico de Acero Inoxidable para Salsas 20cm", price: 24500, currency: "ARS", permalink: "https://articulo.mercadolibre.com.ar/MLA-ejemplo-colador", thumbnail: "", seller: "ImportPro MLA", confidence: "alta", signals: ["Envío internacional","Producto importado"] },
-      { title: "Set 6 Moldes de Silicona para Muffins Antiadherentes", price: 12300, currency: "ARS", permalink: "https://articulo.mercadolibre.com.ar/MLA-ejemplo-moldes", thumbnail: "", seller: "HomeBazar Cross Border", confidence: "media", signals: ["Envío internacional","Moneda USD"] },
-      { title: "Rallador de Tambor Rotativo con 3 Cuchillas Intercambiables", price: 31900, currency: "ARS", permalink: "https://articulo.mercadolibre.com.ar/MLA-ejemplo-rallador", thumbnail: "", seller: "TiendaAsia", confidence: "media", signals: ["Vendedor del exterior","Demora 15-30 días"] },
-      { title: "Mortero de Granito Natural Pesado 15cm con Mano", price: 45000, currency: "ARS", permalink: "https://articulo.mercadolibre.com.ar/MLA-ejemplo-mortero", thumbnail: "", seller: "StoneCraft Import", confidence: "baja", signals: ["Etiqueta de envío internacional (a confirmar)"] },
-      { title: "Exprimidor de Cítricos Manual de Fundición Aluminio", price: 18700, currency: "ARS", permalink: "https://articulo.mercadolibre.com.ar/MLA-ejemplo-exprimidor", thumbnail: "", seller: "KitchenWorld Global", confidence: "alta", signals: ["Envío internacional","Producto importado","Origen: Italia"] }
+    count_only: 2, count_local: 1,
+    only_import: [
+      { title: "Pelador de Verduras Mango de Madera Ergonómico Importado", price: 8990, currency: "ARS", permalink: "https://articulo.mercadolibre.com.ar/MLA-demo-pelador", thumbnail: "" },
+      { title: "Rallador de Tambor Rotativo 3 Cuchillas Acero", price: 31900, currency: "ARS", permalink: "https://articulo.mercadolibre.com.ar/MLA-demo-rallador", thumbnail: "" }
+    ],
+    also_local: [
+      { score: 0.72,
+        import: { title: "Colador Chino Cónico Acero Inoxidable 20cm Importado", price: 24500, currency: "ARS", permalink: "https://articulo.mercadolibre.com.ar/MLA-demo-colador-i", thumbnail: "" },
+        local:  { title: "Colador Chino Acero Inoxidable 20 cm Cocina", price: 18700, currency: "ARS", permalink: "https://articulo.mercadolibre.com.ar/MLA-demo-colador-l", thumbnail: "" } }
     ]
   };
 
-  var data = null, isDemo = false;
+  var data = null, isDemo = false, tab = "only";
   var listEl = document.getElementById("list");
   var searchEl = document.getElementById("search");
-  var sortEl = document.getElementById("sort");
 
-  function fmtDate(s) {
-    try { var d = new Date(s); if (isNaN(d)) return s;
-      return d.toLocaleString("es-AR", { day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit" });
-    } catch (e) { return s; }
+  function fmtDate(s) { try { var d = new Date(s); return isNaN(d) ? s : d.toLocaleString("es-AR", { day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit" }); } catch (e) { return s; } }
+  function fmtPrice(n) { try { return new Intl.NumberFormat("es-AR").format(n); } catch (e) { return String(n); } }
+  function fallback() { var d = document.createElement("div"); d.className = "thumb thumb-fallback"; d.textContent = "🍴"; return d; }
+
+  function thumbEl(src, cls) {
+    if (src) { var img = document.createElement("img"); img.className = cls; img.src = src; img.alt = ""; img.loading = "lazy";
+      img.onerror = function () { var f = document.createElement("div"); f.className = cls + " thumb-fallback"; f.textContent = "🍴"; img.replaceWith(f); }; return img; }
+    var f = document.createElement("div"); f.className = cls + " thumb-fallback"; f.textContent = "🍴"; return f;
   }
-  function fmtPrice(n, cur) {
-    try { return new Intl.NumberFormat("es-AR").format(n); } catch (e) { return String(n); }
+
+  function priceHTML(it) { return it.price != null ? "$ " + fmtPrice(it.price) + "<small>" + (it.currency || "ARS") + "</small>" : "<small>sin precio</small>"; }
+  function goLink(it, cls) { var a = document.createElement("a"); a.className = "go" + (cls ? " " + cls : ""); a.href = it.permalink; a.target = "_blank"; a.rel = "noopener noreferrer"; a.textContent = "Ver en ML →"; return a; }
+
+  function cardOnly(it) {
+    var card = document.createElement("div"); card.className = "card";
+    card.appendChild(thumbEl(it.thumbnail, "thumb"));
+    var info = document.createElement("div"); info.className = "info";
+    info.innerHTML = '<span class="badge intl">✈ Solo importado</span>';
+    var t = document.createElement("h2"); t.className = "title"; t.textContent = it.title; info.appendChild(t);
+    var col = document.createElement("div"); col.className = "price-col";
+    var pr = document.createElement("div"); pr.className = "price"; pr.innerHTML = priceHTML(it);
+    col.appendChild(pr); col.appendChild(goLink(it));
+    card.appendChild(info); card.appendChild(col); return card;
   }
-  var CONF_RANK = { alta: 0, media: 1, baja: 2 };
+
+  function sideEl(it, kind) {
+    var s = document.createElement("div"); s.className = "side " + (kind === "imp" ? "imp" : "loc");
+    s.appendChild(thumbEl(it.thumbnail, "st"));
+    var info = document.createElement("div"); info.className = "sinfo";
+    var lbl = document.createElement("span"); lbl.className = "lbl"; lbl.textContent = kind === "imp" ? "✈ Importado" : "🏠 Local";
+    var t = document.createElement("div"); t.className = "stitle"; t.textContent = it.title;
+    var pr = document.createElement("div"); pr.className = "sprice"; pr.innerHTML = priceHTML(it);
+    info.appendChild(lbl); info.appendChild(t); info.appendChild(pr); info.appendChild(goLink(it, kind === "imp" ? "" : ""));
+    s.appendChild(info); return s;
+  }
+
+  function cmpRow(pair) {
+    var box = document.createElement("div"); box.className = "cmp";
+    var head = document.createElement("div"); head.className = "cmp-head";
+    var pct = Math.round((pair.score || 0) * 100);
+    head.innerHTML = '<span>Comparación</span><span>parecido <b>' + pct + '%</b></span>';
+    var body = document.createElement("div"); body.className = "cmp-body";
+    body.appendChild(sideEl(pair["import"], "imp"));
+    body.appendChild(sideEl(pair.local, "loc"));
+    box.appendChild(head); box.appendChild(body); return box;
+  }
+
+  function showEmpty(msg) { var e = document.createElement("div"); e.className = "empty"; e.innerHTML = '<div class="ico">🔍</div><p></p>'; e.querySelector("p").textContent = msg; listEl.appendChild(e); }
 
   function paint() {
     if (!data) return;
-    document.getElementById("c-count").textContent = data.items.length;
+    var only = data.only_import || [], local = data.also_local || [];
+    document.getElementById("c-only").textContent = only.length;
+    document.getElementById("c-local").textContent = local.length;
+    document.getElementById("t-only").textContent = only.length;
+    document.getElementById("t-local").textContent = local.length;
     document.getElementById("c-date").textContent = fmtDate(data.generated_at);
-    document.getElementById("c-terms").textContent = (data.query_terms || []).length;
     document.body.classList.toggle("is-demo", isDemo);
 
     var q = searchEl.value.trim().toLowerCase();
-    var items = data.items.filter(function (it) { return !q || it.title.toLowerCase().indexOf(q) >= 0; });
-    var s = sortEl.value;
-    items.sort(function (a, b) {
-      if (s === "price-asc") return a.price - b.price;
-      if (s === "price-desc") return b.price - a.price;
-      if (s === "title") return a.title.localeCompare(b.title, "es");
-      return (CONF_RANK[a.confidence] - CONF_RANK[b.confidence]) || (a.price - b.price);
-    });
-
     listEl.innerHTML = "";
-    if (!items.length) {
-      var e = document.createElement("div");
-      e.className = "empty";
-      e.innerHTML = '<div class="ico">🔍</div><p></p>';
-      e.querySelector("p").textContent = data.items.length
-        ? "Ningún artículo coincide con ese filtro."
-        : "Todavía no hay resultados. El agente aún no corrió o no encontró importados hoy.";
-      listEl.appendChild(e);
-      return;
+
+    if (tab === "only") {
+      var items = only.filter(function (it) { return !q || (it.title || "").toLowerCase().indexOf(q) >= 0; });
+      if (!items.length) { showEmpty(only.length ? "Ningún importado coincide con el filtro." : "Todavía no hay importados. Corré el radar en tu PC."); return; }
+      items.forEach(function (it) { listEl.appendChild(cardOnly(it)); });
+    } else {
+      var pairs = local.filter(function (p) { return !q || (p["import"].title || "").toLowerCase().indexOf(q) >= 0 || (p.local.title || "").toLowerCase().indexOf(q) >= 0; });
+      if (!pairs.length) { showEmpty(local.length ? "Ninguno coincide con el filtro." : "No se encontraron productos que también estén a la venta en el país."); return; }
+      pairs.forEach(function (p) { listEl.appendChild(cmpRow(p)); });
     }
-
-    items.forEach(function (it) {
-      var card = document.createElement("div");
-      card.className = "card";
-
-      var thumb;
-      if (it.thumbnail) {
-        thumb = document.createElement("img");
-        thumb.className = "thumb"; thumb.src = it.thumbnail; thumb.alt = ""; thumb.loading = "lazy";
-        thumb.onerror = function () { thumb.replaceWith(makeFallback()); };
-      } else { thumb = makeFallback(); }
-
-      var info = document.createElement("div");
-      info.className = "info";
-      var conf = (it.confidence || "baja").toLowerCase();
-      var badges = '<div class="badges"><span class="badge intl">✈ Envío internacional</span>' +
-        '<span class="badge conf-' + conf + '">Confianza ' + conf + '</span></div>';
-      var title = document.createElement("h2");
-      title.className = "title"; title.textContent = it.title;
-      info.innerHTML = badges;
-      info.appendChild(title);
-      var sig = document.createElement("div");
-      sig.className = "signals";
-      (it.signals || []).forEach(function (x) { var sp = document.createElement("span"); sp.textContent = x; sig.appendChild(sp); });
-      info.appendChild(sig);
-
-      var col = document.createElement("div");
-      col.className = "price-col";
-      var price = document.createElement("div");
-      price.className = "price";
-      price.innerHTML = "$ " + fmtPrice(it.price, it.currency) + "<small>" + (it.currency || "ARS") + "</small>";
-      var go = document.createElement("a");
-      go.className = "go"; go.href = it.permalink; go.target = "_blank"; go.rel = "noopener noreferrer";
-      go.textContent = "Ver en ML →";
-      col.appendChild(price); col.appendChild(go);
-
-      card.appendChild(thumb); card.appendChild(info); card.appendChild(col);
-      listEl.appendChild(card);
-    });
   }
-  function makeFallback() { var d = document.createElement("div"); d.className = "thumb thumb-fallback"; d.textContent = "🍴"; return d; }
 
+  document.querySelectorAll(".tabs button").forEach(function (b) {
+    b.addEventListener("click", function () {
+      tab = b.getAttribute("data-tab");
+      document.querySelectorAll(".tabs button").forEach(function (o) { o.setAttribute("aria-selected", o === b ? "true" : "false"); });
+      paint();
+    });
+  });
   searchEl.addEventListener("input", paint);
-  sortEl.addEventListener("change", paint);
 
-  // Theme
   var root = document.documentElement;
   try { var sv = localStorage.getItem("radar.theme"); if (sv) root.setAttribute("data-theme", sv); } catch (e) {}
   document.getElementById("theme").addEventListener("click", function () {
     var cur = root.getAttribute("data-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-    var next = cur === "dark" ? "light" : "dark";
-    root.setAttribute("data-theme", next);
+    var next = cur === "dark" ? "light" : "dark"; root.setAttribute("data-theme", next);
     try { localStorage.setItem("radar.theme", next); } catch (e) {}
   });
 
-  // Load real data.json if present (GitHub Pages), else fall back to SAMPLE (Artifact preview)
   fetch("data.json", { cache: "no-store" })
-    .then(function (r) { if (!r.ok) throw new Error("no data"); return r.json(); })
-    .then(function (j) { data = j; isDemo = false; paint(); })
+    .then(function (r) { if (!r.ok) throw 0; return r.json(); })
+    .then(function (j) {
+      if (!j.only_import && j.items) { j.only_import = j.items; j.also_local = []; }
+      data = j; isDemo = false; paint();
+    })
     .catch(function () { data = SAMPLE; isDemo = true; paint(); });
 })();
 </script>
