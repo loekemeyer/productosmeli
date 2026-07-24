@@ -1,0 +1,294 @@
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Radar Importados · Bazar y cocina en Mercado Libre Argentina</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #F6F1E9;
+    --surface: #FFFFFF;
+    --surface-2: #FBF6EF;
+    --line: #E7DCCB;
+    --ink: #29231C;
+    --ink-soft: #6C6154;
+    --ink-faint: #9A8E7E;
+    --accent: #B26A1B;
+    --accent-soft: #F1E2C8;
+    --accent-ink: #77450F;
+    --intl: #2E7D74;
+    --intl-soft: #D9EBE8;
+    --intl-ink: #1C5751;
+    --hi: #A64B2A;      /* confianza alta */
+    --hi-soft: #F3DFD6;
+    --mid: #B26A1B;     /* media */
+    --mid-soft: #F1E2C8;
+    --lo: #6E7C86;      /* baja */
+    --lo-soft: #E3E7EA;
+    --shadow: 0 1px 2px rgba(41,35,28,.05), 0 10px 30px rgba(41,35,28,.08);
+    --radius: 14px;
+    --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #191510; --surface: #231D16; --surface-2: #2A231A; --line: #392F23;
+      --ink: #F0E8DB; --ink-soft: #B5A895; --ink-faint: #877B69;
+      --accent: #DDA24A; --accent-soft: #382C17; --accent-ink: #EEC783;
+      --intl: #6FC0B4; --intl-soft: #1C302D; --intl-ink: #9CD8CE;
+      --hi: #E08461; --hi-soft: #3A2319; --mid: #DDA24A; --mid-soft: #382C17;
+      --lo: #99A5AE; --lo-soft: #292E32;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 32px rgba(0,0,0,.4);
+    }
+  }
+  :root[data-theme="light"] {
+    --bg: #F6F1E9; --surface: #FFFFFF; --surface-2: #FBF6EF; --line: #E7DCCB;
+    --ink: #29231C; --ink-soft: #6C6154; --ink-faint: #9A8E7E;
+    --accent: #B26A1B; --accent-soft: #F1E2C8; --accent-ink: #77450F;
+    --intl: #2E7D74; --intl-soft: #D9EBE8; --intl-ink: #1C5751;
+    --hi: #A64B2A; --hi-soft: #F3DFD6; --mid: #B26A1B; --mid-soft: #F1E2C8; --lo: #6E7C86; --lo-soft: #E3E7EA;
+    --shadow: 0 1px 2px rgba(41,35,28,.05), 0 10px 30px rgba(41,35,28,.08);
+  }
+  :root[data-theme="dark"] {
+    --bg: #191510; --surface: #231D16; --surface-2: #2A231A; --line: #392F23;
+    --ink: #F0E8DB; --ink-soft: #B5A895; --ink-faint: #877B69;
+    --accent: #DDA24A; --accent-soft: #382C17; --accent-ink: #EEC783;
+    --intl: #6FC0B4; --intl-soft: #1C302D; --intl-ink: #9CD8CE;
+    --hi: #E08461; --hi-soft: #3A2319; --mid: #DDA24A; --mid-soft: #382C17; --lo: #99A5AE; --lo-soft: #292E32;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 32px rgba(0,0,0,.4);
+  }
+
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--sans); line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 900px; margin: 0 auto; padding: clamp(20px, 4vw, 44px) 20px 64px; }
+
+  .demo-banner { display: none; background: var(--accent-soft); color: var(--accent-ink); border: 1px solid var(--accent); border-radius: 11px; padding: 11px 15px; font-size: .84rem; margin-bottom: 20px; }
+  .demo-banner b { font-weight: 700; }
+  body.is-demo .demo-banner { display: block; }
+
+  header.top { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 22px; }
+  .brand { display: flex; align-items: center; gap: 13px; }
+  .mark { width: 42px; height: 42px; border-radius: 12px; flex: none; background: linear-gradient(150deg, var(--accent), var(--accent-ink)); display: grid; place-items: center; box-shadow: var(--shadow); position: relative; }
+  .mark::before { content: ""; width: 15px; height: 15px; border: 2.5px solid #FFF; border-radius: 50%; }
+  .mark::after { content: ""; position: absolute; width: 8px; height: 2.5px; background: #FFF; border-radius: 2px; transform: rotate(45deg); right: 9px; bottom: 10px; }
+  .brand h1 { font-size: 1.34rem; margin: 0; letter-spacing: -.02em; font-weight: 660; }
+  .brand p { margin: 1px 0 0; font-size: .8rem; color: var(--ink-soft); }
+  .theme-btn { border: 1px solid var(--line); background: var(--surface); color: var(--ink-soft); width: 40px; height: 40px; border-radius: 11px; cursor: pointer; font-size: 1rem; display: grid; place-items: center; flex: none; transition: border-color .15s, color .15s, transform .1s; }
+  .theme-btn:hover { color: var(--ink); border-color: var(--accent); }
+  .theme-btn:active { transform: scale(.94); }
+
+  .meta-row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+  .chip { display: inline-flex; align-items: center; gap: 7px; background: var(--surface); border: 1px solid var(--line); border-radius: 99px; padding: 7px 14px; font-size: .82rem; color: var(--ink-soft); box-shadow: var(--shadow); }
+  .chip b { color: var(--ink); font-weight: 650; font-variant-numeric: tabular-nums; }
+  .chip .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--intl); }
+
+  .controls { display: flex; gap: 10px; margin-bottom: 18px; flex-wrap: wrap; }
+  #search { flex: 1; min-width: 200px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 11px; padding: 12px 15px; font-size: .96rem; font-family: inherit; transition: border-color .15s, box-shadow .15s; }
+  #search::placeholder { color: var(--ink-faint); }
+  #search:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+  .sort { border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 11px; padding: 0 14px; font-size: .9rem; font-family: inherit; cursor: pointer; }
+
+  .list { display: grid; gap: 12px; }
+  .card { display: grid; grid-template-columns: 84px 1fr auto; gap: 16px; align-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 15px; box-shadow: var(--shadow); transition: transform .12s, border-color .15s; }
+  .card:hover { border-color: var(--accent); }
+  .thumb { width: 84px; height: 84px; border-radius: 10px; object-fit: cover; background: var(--surface-2); border: 1px solid var(--line); }
+  .thumb-fallback { display: grid; place-items: center; font-size: 1.6rem; color: var(--ink-faint); }
+  .info { min-width: 0; }
+  .title { font-size: .98rem; font-weight: 600; letter-spacing: -.01em; margin: 0 0 6px; line-height: 1.35; }
+  .badges { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 7px; }
+  .badge { font-size: .68rem; font-weight: 650; text-transform: uppercase; letter-spacing: .05em; padding: 3px 9px; border-radius: 99px; display: inline-flex; align-items: center; gap: 4px; }
+  .badge.intl { background: var(--intl-soft); color: var(--intl-ink); }
+  .badge.conf-alta { background: var(--hi-soft); color: var(--hi); }
+  .badge.conf-media { background: var(--mid-soft); color: var(--mid); }
+  .badge.conf-baja { background: var(--lo-soft); color: var(--lo); }
+  .signals { font-size: .8rem; color: var(--ink-soft); }
+  .signals span { white-space: nowrap; }
+  .signals span::after { content: " · "; color: var(--ink-faint); }
+  .signals span:last-child::after { content: ""; }
+  .price-col { text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 9px; }
+  .price { font-size: 1.12rem; font-weight: 680; letter-spacing: -.02em; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .price small { font-size: .7rem; color: var(--ink-faint); font-weight: 600; display: block; text-transform: uppercase; letter-spacing: .05em; }
+  .go { text-decoration: none; background: var(--accent); color: #FFF; font-size: .84rem; font-weight: 600; padding: 8px 15px; border-radius: 9px; white-space: nowrap; transition: filter .15s, transform .1s; }
+  .go:hover { filter: brightness(1.07); }
+  .go:active { transform: scale(.97); }
+
+  .empty { text-align: center; padding: 60px 20px; color: var(--ink-faint); }
+  .empty .ico { font-size: 2.4rem; opacity: .5; }
+  .empty p { margin: 12px 0 0; font-size: .95rem; }
+
+  .about { margin-top: 46px; border-top: 1px solid var(--line); padding-top: 26px; }
+  .about h3 { font-size: .8rem; text-transform: uppercase; letter-spacing: .11em; color: var(--ink-soft); font-weight: 600; margin: 0 0 12px; }
+  .about p { margin: 0 0 10px; font-size: .88rem; color: var(--ink-soft); max-width: 68ch; }
+  .about code { background: var(--surface-2); border: 1px solid var(--line); border-radius: 5px; padding: 1px 6px; font-size: .82em; }
+
+  footer { margin-top: 34px; text-align: center; color: var(--ink-faint); font-size: .78rem; }
+
+  @media (max-width: 620px) {
+    .card { grid-template-columns: 64px 1fr; grid-template-areas: "thumb info" "price price"; }
+    .thumb { width: 64px; height: 64px; }
+    .price-col { grid-area: price; flex-direction: row; justify-content: space-between; align-items: center; width: 100%; border-top: 1px solid var(--line); padding-top: 11px; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+</style>
+
+<div class="wrap">
+  <div class="demo-banner" id="demo">
+    <b>Vista previa con datos de ejemplo.</b> Aún no se conectó a Mercado Libre — estas fichas son ficticias y solo muestran cómo se verá el panel. Cuando el agente corra a diario en GitHub Actions, este mismo panel mostrará resultados reales.
+  </div>
+
+  <header class="top">
+    <div class="brand">
+      <div class="mark" aria-hidden="true"></div>
+      <div>
+        <h1>Radar Importados</h1>
+        <p>Bazar y cocina · solo con envío internacional · Mercado Libre Argentina</p>
+      </div>
+    </div>
+    <button class="theme-btn" id="theme" title="Cambiar tema" aria-label="Cambiar tema">◐</button>
+  </header>
+
+  <div class="meta-row">
+    <span class="chip"><span class="dot"></span> <b id="c-count">0</b> artículos importados</span>
+    <span class="chip">Actualizado: <b id="c-date">—</b></span>
+    <span class="chip">Términos vigilados: <b id="c-terms">0</b></span>
+  </div>
+
+  <div class="controls">
+    <input id="search" type="text" placeholder="Filtrar por nombre… (ej: pelador, colador, molde)" autocomplete="off" />
+    <select class="sort" id="sort" aria-label="Ordenar">
+      <option value="conf">Mayor confianza</option>
+      <option value="price-asc">Precio: menor a mayor</option>
+      <option value="price-desc">Precio: mayor a menor</option>
+      <option value="title">Nombre (A–Z)</option>
+    </select>
+  </div>
+
+  <div class="list" id="list"></div>
+
+  <section class="about">
+    <h3>Cómo funciona</h3>
+    <p>Cada día, un agente automático busca en Mercado Libre Argentina términos de bazar y cocina, y conserva solo los artículos que <b>únicamente se consiguen por envío internacional</b> (productos importados / Cross-Border Trade). Para cada uno evalúa varias señales —etiqueta de envío internacional, vendedor importador, origen y moneda— y le asigna un nivel de confianza.</p>
+    <p>Los datos se guardan en <code>data.json</code> y este panel los muestra. Un nivel de confianza <b>alta</b> significa que varias señales coinciden; <b>baja</b> es un candidato a revisar manualmente antes de confiar.</p>
+  </section>
+
+  <footer id="foot">Radar Importados · panel estático regenerado a diario</footer>
+</div>
+
+<script>
+(function () {
+  var SAMPLE = {
+    generated_at: "2026-07-24T09:00:00-03:00",
+    site: "MLA",
+    query_terms: ["pelador mango madera","colador chino","molde silicona","rallador tambor","mortero granito","exprimidor cítricos","tabla bambú","set cuchillos damasco"],
+    items: [
+      { title: "Pelador de Papas y Verduras con Mango de Madera Ergonómico Importado", price: 8990, currency: "ARS", permalink: "https://articulo.mercadolibre.com.ar/MLA-ejemplo-pelador", thumbnail: "", seller: "GlobalKitchen Store", confidence: "alta", signals: ["Envío internacional","Vendedor del exterior","Origen: China"] },
+      { title: "Colador Chino Cónico de Acero Inoxidable para Salsas 20cm", price: 24500, currency: "ARS", permalink: "https://articulo.mercadolibre.com.ar/MLA-ejemplo-colador", thumbnail: "", seller: "ImportPro MLA", confidence: "alta", signals: ["Envío internacional","Producto importado"] },
+      { title: "Set 6 Moldes de Silicona para Muffins Antiadherentes", price: 12300, currency: "ARS", permalink: "https://articulo.mercadolibre.com.ar/MLA-ejemplo-moldes", thumbnail: "", seller: "HomeBazar Cross Border", confidence: "media", signals: ["Envío internacional","Moneda USD"] },
+      { title: "Rallador de Tambor Rotativo con 3 Cuchillas Intercambiables", price: 31900, currency: "ARS", permalink: "https://articulo.mercadolibre.com.ar/MLA-ejemplo-rallador", thumbnail: "", seller: "TiendaAsia", confidence: "media", signals: ["Vendedor del exterior","Demora 15-30 días"] },
+      { title: "Mortero de Granito Natural Pesado 15cm con Mano", price: 45000, currency: "ARS", permalink: "https://articulo.mercadolibre.com.ar/MLA-ejemplo-mortero", thumbnail: "", seller: "StoneCraft Import", confidence: "baja", signals: ["Etiqueta de envío internacional (a confirmar)"] },
+      { title: "Exprimidor de Cítricos Manual de Fundición Aluminio", price: 18700, currency: "ARS", permalink: "https://articulo.mercadolibre.com.ar/MLA-ejemplo-exprimidor", thumbnail: "", seller: "KitchenWorld Global", confidence: "alta", signals: ["Envío internacional","Producto importado","Origen: Italia"] }
+    ]
+  };
+
+  var data = null, isDemo = false;
+  var listEl = document.getElementById("list");
+  var searchEl = document.getElementById("search");
+  var sortEl = document.getElementById("sort");
+
+  function fmtDate(s) {
+    try { var d = new Date(s); if (isNaN(d)) return s;
+      return d.toLocaleString("es-AR", { day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit" });
+    } catch (e) { return s; }
+  }
+  function fmtPrice(n, cur) {
+    try { return new Intl.NumberFormat("es-AR").format(n); } catch (e) { return String(n); }
+  }
+  var CONF_RANK = { alta: 0, media: 1, baja: 2 };
+
+  function paint() {
+    if (!data) return;
+    document.getElementById("c-count").textContent = data.items.length;
+    document.getElementById("c-date").textContent = fmtDate(data.generated_at);
+    document.getElementById("c-terms").textContent = (data.query_terms || []).length;
+    document.body.classList.toggle("is-demo", isDemo);
+
+    var q = searchEl.value.trim().toLowerCase();
+    var items = data.items.filter(function (it) { return !q || it.title.toLowerCase().indexOf(q) >= 0; });
+    var s = sortEl.value;
+    items.sort(function (a, b) {
+      if (s === "price-asc") return a.price - b.price;
+      if (s === "price-desc") return b.price - a.price;
+      if (s === "title") return a.title.localeCompare(b.title, "es");
+      return (CONF_RANK[a.confidence] - CONF_RANK[b.confidence]) || (a.price - b.price);
+    });
+
+    listEl.innerHTML = "";
+    if (!items.length) {
+      var e = document.createElement("div");
+      e.className = "empty";
+      e.innerHTML = '<div class="ico">🔍</div><p></p>';
+      e.querySelector("p").textContent = data.items.length
+        ? "Ningún artículo coincide con ese filtro."
+        : "Todavía no hay resultados. El agente aún no corrió o no encontró importados hoy.";
+      listEl.appendChild(e);
+      return;
+    }
+
+    items.forEach(function (it) {
+      var card = document.createElement("div");
+      card.className = "card";
+
+      var thumb;
+      if (it.thumbnail) {
+        thumb = document.createElement("img");
+        thumb.className = "thumb"; thumb.src = it.thumbnail; thumb.alt = ""; thumb.loading = "lazy";
+        thumb.onerror = function () { thumb.replaceWith(makeFallback()); };
+      } else { thumb = makeFallback(); }
+
+      var info = document.createElement("div");
+      info.className = "info";
+      var conf = (it.confidence || "baja").toLowerCase();
+      var badges = '<div class="badges"><span class="badge intl">✈ Envío internacional</span>' +
+        '<span class="badge conf-' + conf + '">Confianza ' + conf + '</span></div>';
+      var title = document.createElement("h2");
+      title.className = "title"; title.textContent = it.title;
+      info.innerHTML = badges;
+      info.appendChild(title);
+      var sig = document.createElement("div");
+      sig.className = "signals";
+      (it.signals || []).forEach(function (x) { var sp = document.createElement("span"); sp.textContent = x; sig.appendChild(sp); });
+      info.appendChild(sig);
+
+      var col = document.createElement("div");
+      col.className = "price-col";
+      var price = document.createElement("div");
+      price.className = "price";
+      price.innerHTML = "$ " + fmtPrice(it.price, it.currency) + "<small>" + (it.currency || "ARS") + "</small>";
+      var go = document.createElement("a");
+      go.className = "go"; go.href = it.permalink; go.target = "_blank"; go.rel = "noopener noreferrer";
+      go.textContent = "Ver en ML →";
+      col.appendChild(price); col.appendChild(go);
+
+      card.appendChild(thumb); card.appendChild(info); card.appendChild(col);
+      listEl.appendChild(card);
+    });
+  }
+  function makeFallback() { var d = document.createElement("div"); d.className = "thumb thumb-fallback"; d.textContent = "🍴"; return d; }
+
+  searchEl.addEventListener("input", paint);
+  sortEl.addEventListener("change", paint);
+
+  // Theme
+  var root = document.documentElement;
+  try { var sv = localStorage.getItem("radar.theme"); if (sv) root.setAttribute("data-theme", sv); } catch (e) {}
+  document.getElementById("theme").addEventListener("click", function () {
+    var cur = root.getAttribute("data-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    var next = cur === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem("radar.theme", next); } catch (e) {}
+  });
+
+  // Load real data.json if present (GitHub Pages), else fall back to SAMPLE (Artifact preview)
+  fetch("data.json", { cache: "no-store" })
+    .then(function (r) { if (!r.ok) throw new Error("no data"); return r.json(); })
+    .then(function (j) { data = j; isDemo = false; paint(); })
+    .catch(function () { data = SAMPLE; isDemo = true; paint(); });
+})();
+</script>

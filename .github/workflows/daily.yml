@@ -1,0 +1,60 @@
+name: Radar Importados (diario)
+
+# Corre solo, todos los días. No necesitás tener nada encendido.
+on:
+  schedule:
+    - cron: "0 12 * * *"   # 12:00 UTC = 09:00 Argentina (UTC-3)
+  workflow_dispatch: {}     # botón para ejecutarlo manualmente cuando quieras
+
+permissions:
+  contents: write           # para commitear data.json
+  pages: write              # para publicar el panel
+  id-token: write
+
+concurrency:
+  group: radar-pages
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Ejecutar agente
+        env:
+          # Opcional: si cargás el secret, usa la API oficial. Si no, hace scraping.
+          ML_ACCESS_TOKEN: ${{ secrets.ML_ACCESS_TOKEN }}
+        run: python agent.py
+
+      - name: Guardar data.json en el repo
+        run: |
+          git config user.name  "radar-bot"
+          git config user.email "radar-bot@users.noreply.github.com"
+          git add data.json
+          git commit -m "Actualizar resultados $(date -u +%F)" || echo "sin cambios"
+          git push || echo "nada que pushear"
+
+      - name: Preparar sitio
+        run: |
+          mkdir -p _site
+          cp index.html _site/index.html
+          cp data.json  _site/data.json
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  publish:
+    needs: scan
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - id: deploy
+        uses: actions/deploy-pages@v4
