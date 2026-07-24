@@ -1,17 +1,10 @@
 {
-  "generated_at": "2026-07-24T13:46:45-03:00",
+  "generated_at": "2026-07-24T14:07:50-03:00",
   "site": "MLA",
-  "mode": "API",
+  "mode": "local",
   "filter": "SHIPPING_ORIGIN=10215069 (internacional)",
   "query_terms": [
-    "utensilios cocina",
-    "bazar cocina",
-    "pelador verduras",
-    "colador cocina",
-    "molde reposteria",
-    "rallador cocina",
-    "set cuchillos cocina",
-    "organizador cocina"
+    "bazar-cocina/utensilios"
   ],
   "count": 0,
   "items": []
