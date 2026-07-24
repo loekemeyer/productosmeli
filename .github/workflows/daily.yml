@@ -27,16 +27,14 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Sonda de diagnóstico (temporal)
-        continue-on-error: true
-        env:
-          ML_ACCESS_TOKEN: ${{ secrets.ML_ACCESS_TOKEN }}
-        run: python probe.py
+      - run: pip install pynacl
 
       - name: Ejecutar agente
         env:
-          # Opcional: si cargás el secret, usa la API oficial. Si no, hace scraping.
-          ML_ACCESS_TOKEN: ${{ secrets.ML_ACCESS_TOKEN }}
+          ML_CLIENT_ID: ${{ secrets.ML_CLIENT_ID }}
+          ML_CLIENT_SECRET: ${{ secrets.ML_CLIENT_SECRET }}
+          ML_REFRESH_TOKEN: ${{ secrets.ML_REFRESH_TOKEN }}
+          GH_PAT: ${{ secrets.GH_PAT }}
         run: python agent.py
 
       - name: Guardar data.json en el repo

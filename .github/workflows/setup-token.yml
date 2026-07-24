@@ -1,0 +1,35 @@
+name: Configurar token (una sola vez)
+
+# Canjea el "code" de autorización de Mercado Libre por el refresh token y lo
+# guarda como secreto del repo. Ejecutalo a mano desde la pestaña Actions.
+on:
+  workflow_dispatch:
+    inputs:
+      code:
+        description: "Código de autorización de ML (el valor de ?code=... de la URL)"
+        required: true
+      redirect_uri:
+        description: "La MISMA Redirect URI configurada en tu app de ML"
+        required: true
+        default: "https://loekemeyer.github.io/productosmeli/"
+
+permissions:
+  contents: read
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pynacl
+      - name: Canjear código y guardar refresh token
+        env:
+          ML_CLIENT_ID: ${{ secrets.ML_CLIENT_ID }}
+          ML_CLIENT_SECRET: ${{ secrets.ML_CLIENT_SECRET }}
+          ML_CODE: ${{ inputs.code }}
+          ML_REDIRECT_URI: ${{ inputs.redirect_uri }}
+          GH_PAT: ${{ secrets.GH_PAT }}
+        run: python setup_token.py
