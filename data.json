@@ -1,8 +1,11 @@
 {
-  "generated_at": "",
+  "generated_at": "2026-07-24T10:20:23-03:00",
   "site": "MLA",
-  "mode": "pending",
-  "query_terms": [],
+  "mode": "SCRAPE",
+  "filter": "SHIPPING_ORIGIN=10215069 (internacional)",
+  "query_terms": [
+    "utensilios"
+  ],
   "count": 0,
   "items": []
 }
