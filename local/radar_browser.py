@@ -54,9 +54,11 @@ EXTRACT_JS = r"""
     const title = ((t && t.textContent) || (a && a.textContent) || "").trim();
     const link = (a && a.href) ? a.href.split("#")[0].split("?")[0] : "";
     if (!title || !link) return;
+    const soldM = (el.textContent || "").match(/([\d.]+)\s*vendidos?/i);
     out.push({ title, link,
       price: p ? p.textContent.replace(/[.\s]/g, "") : "",
       thumb: img ? (img.getAttribute("src") || img.getAttribute("data-src") || "") : "",
+      sold: soldM ? soldM[1].replace(/\./g, "") : "",
       intl: (el.textContent || "").toLowerCase().includes("internacional") });
   });
   return out;
@@ -214,7 +216,8 @@ def search_local(page, query):
 def to_item(c):
     return {"title": c["title"],
             "price": int(c["price"]) if str(c.get("price", "")).isdigit() else None,
-            "currency": "ARS", "permalink": c["link"], "thumbnail": c.get("thumb", "") or ""}
+            "currency": "ARS", "permalink": c["link"], "thumbnail": c.get("thumb", "") or "",
+            "sold": int(c["sold"]) if str(c.get("sold", "")).isdigit() else None}
 
 
 def classify(page, c):
