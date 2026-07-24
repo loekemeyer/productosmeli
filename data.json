@@ -1,73 +1,26 @@
 {
-  "generated_at": "2026-07-24T14:54:37-03:00",
+  "generated_at": "2026-07-24T15:20:12-03:00",
   "site": "MLA",
   "mode": "navegador",
   "filter": "SHIPPING_ORIGIN=10215069 (internacional)",
-  "query_terms": [
-    "bazar-cocina/utensilios"
-  ],
   "count_only": 7,
   "count_local": 24,
   "only_import": [
     {
-      "title": "Molde Prensador De Hamburguesas 2 Tamaños 7,3 Y 12 Cm Negro",
-      "price": 10754,
+      "title": "Pelador De Verduras Multifunción X2 Unidades",
+      "price": 26126,
       "currency": "ARS",
-      "permalink": "https://www.mercadolibre.com.ar/prensa-para-hamburguesas-3-en-1-con-molde-doble-negro/p/MLA2059945881",
-      "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_806668-CBT105685057152_012026-E.webp",
+      "permalink": "https://www.mercadolibre.com.ar/kit-x2-pelapapas-acero-inoxidable-con-destapador/p/MLA2080017018",
+      "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_946154-CBT110624786384_052026-E.webp",
       "seller": "—",
       "confidence": "alta",
       "signals": [
         "Envío internacional (filtro de ML)"
-      ]
-    },
-    {
-      "title": "Prensa Manual Para Ajo Y Jengibre Utensilio De Cocina",
-      "price": 12029,
-      "currency": "ARS",
-      "permalink": "https://www.mercadolibre.com.ar/prensa-ajos-manual-de-acero-inoxidable-para-cocina-plateado/p/MLA2030712760",
-      "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_635868-CBT109613947932_042026-E.webp",
-      "seller": "—",
-      "confidence": "alta",
-      "signals": [
-        "Envío internacional (filtro de ML)"
-      ]
-    },
-    {
-      "title": "Moldes De Chocolate De Policarbonato 3d Sphere Diamond Choco",
-      "price": 12110,
-      "currency": "ARS",
-      "permalink": "https://articulo.mercadolibre.com.ar/MLA-3052371162-moldes-de-chocolate-de-policarbonato-3d-sphere-diamond-choco-_JM",
-      "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_927612-CBT107998775148_032026-E.webp",
-      "seller": "—",
-      "confidence": "alta",
-      "signals": [
-        "Envío internacional (filtro de ML)"
-      ]
-    },
-    {
-      "title": "3 Uds Pelador Y Rallador Multifunción",
-      "price": 17762,
-      "currency": "ARS",
-      "permalink": "https://articulo.mercadolibre.com.ar/MLA-3235013744-3-uds-pelador-y-rallador-multifuncion-_JM",
-      "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_972932-CBT109971858936_042026-E.webp",
-      "seller": "—",
-      "confidence": "alta",
-      "signals": [
-        "Envío internacional (filtro de ML)"
-      ]
-    },
-    {
-      "title": "Colador Para Yogurt Y Leches Vegetales 1300 Ml Beige",
-      "price": 18375,
-      "currency": "ARS",
-      "permalink": "https://www.mercadolibre.com.ar/colador-para-yogur-griego-y-quesos-1100ml-variation/p/MLA2058220305",
-      "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_843233-CBT109742660178_042026-E.webp",
-      "seller": "—",
-      "confidence": "alta",
-      "signals": [
-        "Envío internacional (filtro de ML)"
-      ]
+      ],
+      "sold": null,
+      "first_seen": "2026-07-24",
+      "last_seen": "2026-07-24",
+      "nuevo": true
     },
     {
       "title": "Tabla De Corte De Titanio 23x34 Cm Para Cocina Yamato Stainless Steel",
@@ -79,108 +32,196 @@
       "confidence": "alta",
       "signals": [
         "Envío internacional (filtro de ML)"
-      ]
+      ],
+      "sold": null,
+      "first_seen": "2026-07-24",
+      "last_seen": "2026-07-24",
+      "nuevo": true
     },
     {
-      "title": "Pelador De Verduras Multifunción X2 Unidades",
-      "price": 26126,
+      "title": "Colador Para Yogurt Y Leches Vegetales 1300 Ml Beige",
+      "price": 18375,
       "currency": "ARS",
-      "permalink": "https://www.mercadolibre.com.ar/kit-x2-pelapapas-acero-inoxidable-con-destapador/p/MLA2080017018",
-      "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_946154-CBT110624786384_052026-E.webp",
+      "permalink": "https://www.mercadolibre.com.ar/colador-para-yogur-griego-y-quesos-1100ml-variation/p/MLA2058220305",
+      "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_843233-CBT109742660178_042026-E.webp",
       "seller": "—",
       "confidence": "alta",
       "signals": [
         "Envío internacional (filtro de ML)"
-      ]
+      ],
+      "sold": null,
+      "first_seen": "2026-07-24",
+      "last_seen": "2026-07-24",
+      "nuevo": true
+    },
+    {
+      "title": "3 Uds Pelador Y Rallador Multifunción",
+      "price": 17762,
+      "currency": "ARS",
+      "permalink": "https://articulo.mercadolibre.com.ar/MLA-3235013744-3-uds-pelador-y-rallador-multifuncion-_JM",
+      "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_972932-CBT109971858936_042026-E.webp",
+      "seller": "—",
+      "confidence": "alta",
+      "signals": [
+        "Envío internacional (filtro de ML)"
+      ],
+      "sold": null,
+      "first_seen": "2026-07-24",
+      "last_seen": "2026-07-24",
+      "nuevo": true
+    },
+    {
+      "title": "Moldes De Chocolate De Policarbonato 3d Sphere Diamond Choco",
+      "price": 12110,
+      "currency": "ARS",
+      "permalink": "https://articulo.mercadolibre.com.ar/MLA-3052371162-moldes-de-chocolate-de-policarbonato-3d-sphere-diamond-choco-_JM",
+      "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_927612-CBT107998775148_032026-E.webp",
+      "seller": "—",
+      "confidence": "alta",
+      "signals": [
+        "Envío internacional (filtro de ML)"
+      ],
+      "sold": null,
+      "first_seen": "2026-07-24",
+      "last_seen": "2026-07-24",
+      "nuevo": true
+    },
+    {
+      "title": "Prensa Manual Para Ajo Y Jengibre Utensilio De Cocina",
+      "price": 12029,
+      "currency": "ARS",
+      "permalink": "https://www.mercadolibre.com.ar/prensa-ajos-manual-de-acero-inoxidable-para-cocina-plateado/p/MLA2030712760",
+      "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_635868-CBT109613947932_042026-E.webp",
+      "seller": "—",
+      "confidence": "alta",
+      "signals": [
+        "Envío internacional (filtro de ML)"
+      ],
+      "sold": null,
+      "first_seen": "2026-07-24",
+      "last_seen": "2026-07-24",
+      "nuevo": true
+    },
+    {
+      "title": "Molde Prensador De Hamburguesas 2 Tamaños 7,3 Y 12 Cm Negro",
+      "price": 10754,
+      "currency": "ARS",
+      "permalink": "https://www.mercadolibre.com.ar/prensa-para-hamburguesas-3-en-1-con-molde-doble-negro/p/MLA2059945881",
+      "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_806668-CBT105685057152_012026-E.webp",
+      "seller": "—",
+      "confidence": "alta",
+      "signals": [
+        "Envío internacional (filtro de ML)"
+      ],
+      "sold": null,
+      "first_seen": "2026-07-24",
+      "last_seen": "2026-07-24",
+      "nuevo": true
     }
   ],
   "also_local": [
     {
-      "score": 0.929,
+      "score": 0.686,
       "import": {
-        "title": "Afilador Manual 4 En 1 Para Cuchillos Y Tijeras Black Red",
-        "price": 11432,
+        "title": "Kit Ahumador De Whisky Hbxcwyj Para Cócteles, 8 Sabores",
+        "price": 83384,
         "currency": "ARS",
-        "permalink": "https://www.mercadolibre.com.ar/afilador-de-cuchillos-4-en-1-de-acero-inoxidable-para-cocina-alta-calidad/p/MLA2058227945",
-        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_667839-CBT110265719465_042026-E.webp",
+        "permalink": "https://www.mercadolibre.com.ar/kit-de-ahumador-de-whisky-para-cocteles/p/MLA2070376775",
+        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_860557-CBT108662082310_032026-E.webp",
         "seller": "—",
         "confidence": "alta",
         "signals": [
           "Envío internacional (filtro de ML)"
-        ]
+        ],
+        "sold": null,
+        "first_seen": "2026-07-24",
+        "last_seen": "2026-07-24",
+        "nuevo": true
       },
       "local": {
-        "title": "Afilador De Cuchillos 3 En 1 Manual Tijeras Black Red Cocina",
-        "price": 11000,
+        "title": "Kit Ahumador Cócteles Y Whisky Aoke Dorado 4 Sabores",
+        "price": 188999,
         "currency": "ARS",
-        "permalink": "https://www.mercadolibre.com.ar/afilador-de-cuchillos-3-en-1-manual-tijeras-black-red-cocina/up/MLAU4096457454",
-        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_641512-MLA114515015793_072026-E.webp"
+        "permalink": "https://www.mercadolibre.com.ar/kit-ahumador-cocteles-y-whisky-aoke-dorado-4-sabores/up/MLAU3880455449",
+        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_949160-MLA110107328027_042026-E.webp"
       }
     },
     {
-      "score": 0.774,
+      "score": 0.536,
       "import": {
-        "title": "Molinillo De Café Manual Con Manivela Para Espresso Negro",
-        "price": 22105,
+        "title": "Set Embudo Y Pinza Para Frascos De Acero Inoxidable X4 Pzs",
+        "price": 27531,
         "currency": "ARS",
-        "permalink": "https://www.mercadolibre.com.ar/molinillo-de-cafe-manual-con-manivela-para-espresso-negro/p/MLA2058436899",
-        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_703966-CBT108788126153_032026-E.webp",
+        "permalink": "https://www.mercadolibre.com.ar/kit-embudo-acero-inoxidable-y-pinza-para-frascos-plateado/p/MLA2058241571",
+        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_633766-CBT108055127116_032026-E.webp",
         "seller": "—",
         "confidence": "alta",
         "signals": [
           "Envío internacional (filtro de ML)"
-        ]
+        ],
+        "sold": null,
+        "first_seen": "2026-07-24",
+        "last_seen": "2026-07-24",
+        "nuevo": true
       },
       "local": {
-        "title": "Molinillo De Café Manual Negro Ajustable Para Espresso",
-        "price": 407073,
+        "title": "Set De Embudo Y Pinza Para Conservas Acero Inoxidable",
+        "price": 103070,
         "currency": "ARS",
-        "permalink": "https://www.mercadolibre.com.ar/molinillo-de-cafe-manual-negro-ajustable-para-espresso/up/MLAU3881629537",
-        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_800455-MLA110131624001_042026-E.webp"
+        "permalink": "https://www.mercadolibre.com.ar/set-de-embudo-y-pinza-para-conservas-acero-inoxidable/up/MLAU3396761187",
+        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_740323-MLA91182799824_092025-E.webp"
       }
     },
     {
-      "score": 0.774,
+      "score": 0.583,
       "import": {
-        "title": "Termómetro Digital De Cocina Para Carne Y Repostería Plateado",
-        "price": 9736,
+        "title": "Afilador Eléctrico De Cuchillos De Cocina Doméstico Blanco",
+        "price": 23881,
         "currency": "ARS",
-        "permalink": "https://www.mercadolibre.com.ar/termometro-digital-de-cocina-para-carne-y-reposteria-plateado/p/MLA2051507278",
-        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_816007-CBT107500475388_032026-E.webp",
+        "permalink": "https://www.mercadolibre.com.ar/afilador-electrico-de-cuchillos-domestico-5v-ylcp/p/MLA2067602605",
+        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_718123-CBT105779355320_022026-E.webp",
         "seller": "—",
         "confidence": "alta",
         "signals": [
           "Envío internacional (filtro de ML)"
-        ]
+        ],
+        "sold": null,
+        "first_seen": "2026-07-24",
+        "last_seen": "2026-07-24",
+        "nuevo": true
       },
       "local": {
-        "title": "Termómetro De Cocina Digital Para Barbacoa Carne Reposteria",
-        "price": 38749,
+        "title": "Afilador Eléctrico De Cuchillos Para Cocina Recargable Usb",
+        "price": 31572,
         "currency": "ARS",
-        "permalink": "https://www.mercadolibre.com.ar/termometro-de-cocina-digital-para-barbacoa-carne-reposteria/up/MLAU354670887",
-        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_945610-MLA102612765074_122025-E.webp"
+        "permalink": "https://www.mercadolibre.com.ar/afilador-electrico-de-cuchillos-para-cocina-recargable-usb/up/MLAU4190295353",
+        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_882094-MLA112833161230_072026-E.webp"
       }
     },
     {
-      "score": 0.774,
+      "score": 0.556,
       "import": {
-        "title": "Tabla De Cortar De Acero Inoxidable, Utensilios De Cocina",
-        "price": 20377,
+        "title": "Aceitera De Vidrio 2 En 1 Con Pico Y Spray 470 Ml Negro",
+        "price": 22880,
         "currency": "ARS",
-        "permalink": "https://articulo.mercadolibre.com.ar/MLA-2330385408-tabla-de-cortar-de-acero-inoxidable-utensilios-de-cocina-_JM",
-        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_765511-CBT86963175034_072025-E.webp",
+        "permalink": "https://www.mercadolibre.com.ar/aceitera-de-vidrio-2-en-1-con-pico-y-spray-470-ml-negro/p/MLA2030935516",
+        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_619264-CBT110627745982_052026-E.webp",
         "seller": "—",
         "confidence": "alta",
         "signals": [
           "Envío internacional (filtro de ML)"
-        ]
+        ],
+        "sold": null,
+        "first_seen": "2026-07-24",
+        "last_seen": "2026-07-24",
+        "nuevo": true
       },
       "local": {
-        "title": "Tabla De Cortar 3 En 1 De Acero Inoxidable Para Cocina Acero Plateado",
-        "price": 63256,
+        "title": "Rociador Aceite De Vidrio Negro Aceitera Doble Pico",
+        "price": 16999,
         "currency": "ARS",
-        "permalink": "https://www.mercadolibre.com.ar/tabla-de-cortar-3-en-1-de-acero-inoxidable-para-cocina-acero-plateado/p/MLA74264497",
-        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_990830-MLA113557257825_062026-E.webp"
+        "permalink": "https://click1.mercadolibre.com.ar/mclics/clicks/external/MLA/count",
+        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_751000-MLA112542891778_062026-E.webp"
       }
     },
     {
@@ -195,7 +236,11 @@
         "confidence": "alta",
         "signals": [
           "Envío internacional (filtro de ML)"
-        ]
+        ],
+        "sold": null,
+        "first_seen": "2026-07-24",
+        "last_seen": "2026-07-24",
+        "nuevo": true
       },
       "local": {
         "title": "Tabla De Cocina Con Afilador 2 En 1 Acero Inoxidable",
@@ -206,25 +251,107 @@
       }
     },
     {
-      "score": 0.686,
+      "score": 0.774,
       "import": {
-        "title": "Kit Ahumador De Whisky Hbxcwyj Para Cócteles, 8 Sabores",
-        "price": 83384,
+        "title": "Molinillo De Café Manual Con Manivela Para Espresso Negro",
+        "price": 22105,
         "currency": "ARS",
-        "permalink": "https://www.mercadolibre.com.ar/kit-de-ahumador-de-whisky-para-cocteles/p/MLA2070376775",
-        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_860557-CBT108662082310_032026-E.webp",
+        "permalink": "https://www.mercadolibre.com.ar/molinillo-de-cafe-manual-con-manivela-para-espresso-negro/p/MLA2058436899",
+        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_703966-CBT108788126153_032026-E.webp",
         "seller": "—",
         "confidence": "alta",
         "signals": [
           "Envío internacional (filtro de ML)"
-        ]
+        ],
+        "sold": null,
+        "first_seen": "2026-07-24",
+        "last_seen": "2026-07-24",
+        "nuevo": true
       },
       "local": {
-        "title": "Kit Ahumador Cócteles Y Whisky Aoke Dorado 4 Sabores",
-        "price": 188999,
+        "title": "Molinillo De Café Manual Negro Ajustable Para Espresso",
+        "price": 407073,
         "currency": "ARS",
-        "permalink": "https://www.mercadolibre.com.ar/kit-ahumador-cocteles-y-whisky-aoke-dorado-4-sabores/up/MLAU3880455449",
-        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_949160-MLA110107328027_042026-E.webp"
+        "permalink": "https://www.mercadolibre.com.ar/molinillo-de-cafe-manual-negro-ajustable-para-espresso/up/MLAU3881629537",
+        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_800455-MLA110131624001_042026-E.webp"
+      }
+    },
+    {
+      "score": 0.584,
+      "import": {
+        "title": "Cortador Y Picador De Verduras Multifunción Con Recipientes Gris Oscuro",
+        "price": 20910,
+        "currency": "ARS",
+        "permalink": "https://www.mercadolibre.com.ar/cortador-y-picador-de-verduras-multifuncion-con-recipientes-gris-oscuro/p/MLA2051582008",
+        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_770674-CBT104435623733_012026-E.webp",
+        "seller": "—",
+        "confidence": "alta",
+        "signals": [
+          "Envío internacional (filtro de ML)"
+        ],
+        "sold": null,
+        "first_seen": "2026-07-24",
+        "last_seen": "2026-07-24",
+        "nuevo": true
+      },
+      "local": {
+        "title": "Cortador Picador De Verduras Frutas Multiuso 1 Set 16 Piezas Gris Oscuro",
+        "price": 42900,
+        "currency": "ARS",
+        "permalink": "https://www.mercadolibre.com.ar/cortador-picador-de-verduras-frutas-multiuso-1-set-16-piezas-gris-oscuro/p/MLA75541928",
+        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_964241-MLA113447381246_072026-E.webp"
+      }
+    },
+    {
+      "score": 0.774,
+      "import": {
+        "title": "Tabla De Cortar De Acero Inoxidable, Utensilios De Cocina",
+        "price": 20377,
+        "currency": "ARS",
+        "permalink": "https://articulo.mercadolibre.com.ar/MLA-2330385408-tabla-de-cortar-de-acero-inoxidable-utensilios-de-cocina-_JM",
+        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_765511-CBT86963175034_072025-E.webp",
+        "seller": "—",
+        "confidence": "alta",
+        "signals": [
+          "Envío internacional (filtro de ML)"
+        ],
+        "sold": null,
+        "first_seen": "2026-07-24",
+        "last_seen": "2026-07-24",
+        "nuevo": true
+      },
+      "local": {
+        "title": "Tabla De Cortar 3 En 1 De Acero Inoxidable Para Cocina Acero Plateado",
+        "price": 63256,
+        "currency": "ARS",
+        "permalink": "https://www.mercadolibre.com.ar/tabla-de-cortar-3-en-1-de-acero-inoxidable-para-cocina-acero-plateado/p/MLA74264497",
+        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_990830-MLA113557257825_062026-E.webp"
+      }
+    },
+    {
+      "score": 0.487,
+      "import": {
+        "title": "4 Piezas Pelapapas Multifuncional Acero Inoxidable",
+        "price": 20281,
+        "currency": "ARS",
+        "permalink": "https://articulo.mercadolibre.com.ar/MLA-1764864237-4-piezas-pelapapas-multifuncional-acero-inoxidable-_JM",
+        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_829096-CBT110904783043_042026-E.webp",
+        "seller": "—",
+        "confidence": "alta",
+        "signals": [
+          "Envío internacional (filtro de ML)"
+        ],
+        "sold": null,
+        "first_seen": "2026-07-24",
+        "last_seen": "2026-07-24",
+        "nuevo": true
+      },
+      "local": {
+        "title": "Pelapapas De Acero Inoxidable Premium - Sheshu Home",
+        "price": 5100,
+        "currency": "ARS",
+        "permalink": "https://www.mercadolibre.com.ar/pelapapas-de-acero-inoxidable-premium-sheshu-home/p/MLA28292888",
+        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_977107-MLA99508085244_112025-E.webp"
       }
     },
     {
@@ -239,7 +366,11 @@
         "confidence": "alta",
         "signals": [
           "Envío internacional (filtro de ML)"
-        ]
+        ],
+        "sold": null,
+        "first_seen": "2026-07-24",
+        "last_seen": "2026-07-24",
+        "nuevo": true
       },
       "local": {
         "title": "Tabla De Cortar Acero Inoxidable Doble Cara Thouse",
@@ -247,72 +378,6 @@
         "currency": "ARS",
         "permalink": "https://www.mercadolibre.com.ar/tabla-de-cortar-acero-inoxidable-doble-cara-thouse/up/MLAU3471264349",
         "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_679190-MLA103367106590_012026-E.webp"
-      }
-    },
-    {
-      "score": 0.635,
-      "import": {
-        "title": "Bowl De Acero Inoxidable Con Rallador Y Rebanador De Cocina Plateado",
-        "price": 12853,
-        "currency": "ARS",
-        "permalink": "https://www.mercadolibre.com.ar/bowl-acero-inoxidable-24-cm-con-tapa-rallador-multifuncion/p/MLA2060309877",
-        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_742177-CBT104100338616_012026-E.webp",
-        "seller": "—",
-        "confidence": "alta",
-        "signals": [
-          "Envío internacional (filtro de ML)"
-        ]
-      },
-      "local": {
-        "title": "Bowl Batidor Acero Inoxidable Con Rebanador Y Rallador 26 Cm",
-        "price": 32775,
-        "currency": "ARS",
-        "permalink": "https://articulo.mercadolibre.com.ar/MLA-1142614428-bowl-batidor-acero-inoxidable-con-rebanador-y-rallador-26-cm-_JM",
-        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_725381-MLA50316025566_062022-E.webp"
-      }
-    },
-    {
-      "score": 0.635,
-      "import": {
-        "title": "Tabla De Corte Doble Faz De Acero Inoxidable Gruesa",
-        "price": 10947,
-        "currency": "ARS",
-        "permalink": "https://www.mercadolibre.com.ar/tabla-de-corte-doble-faz-de-acero-inoxidable-gruesa/up/MLAU3780420820",
-        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_734026-CBT111430267458_052026-E.webp",
-        "seller": "—",
-        "confidence": "alta",
-        "signals": [
-          "Envío internacional (filtro de ML)"
-        ]
-      },
-      "local": {
-        "title": "Tabla De Picar Acero Inoxidable Doble Faz Antibacterial",
-        "price": 47015,
-        "currency": "ARS",
-        "permalink": "https://www.mercadolibre.com.ar/tabla-de-picar-acero-inoxidable-doble-faz-antibacterial/up/MLAU3839854558",
-        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_725027-MLA108420092703_032026-E.webp"
-      }
-    },
-    {
-      "score": 0.619,
-      "import": {
-        "title": "Batidor Espumador De Leche Eléctrico Recargable 3 Velocidade",
-        "price": 16938,
-        "currency": "ARS",
-        "permalink": "https://www.mercadolibre.com.ar/batidor-espumador-de-leche-electrico-recargable-3-velocidade/p/MLA2051263726",
-        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_701572-CBT110381273740_052026-E.webp",
-        "seller": "—",
-        "confidence": "alta",
-        "signals": [
-          "Envío internacional (filtro de ML)"
-        ]
-      },
-      "local": {
-        "title": "Espumador De Leche Eléctrico Recargable 3 Velocidades",
-        "price": 14000,
-        "currency": "ARS",
-        "permalink": "https://www.mercadolibre.com.ar/espumador-de-leche-electrico-recargable-3-velocidades/p/MLA45203393",
-        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_777626-MLA81698419341_122024-E.webp"
       }
     },
     {
@@ -327,7 +392,11 @@
         "confidence": "alta",
         "signals": [
           "Envío internacional (filtro de ML)"
-        ]
+        ],
+        "sold": null,
+        "first_seen": "2026-07-24",
+        "last_seen": "2026-07-24",
+        "nuevo": true
       },
       "local": {
         "title": "Balanza Digital Gdealer para Cocina con Precisión de 0.01 g y Pantalla LCD",
@@ -349,7 +418,11 @@
         "confidence": "alta",
         "signals": [
           "Envío internacional (filtro de ML)"
-        ]
+        ],
+        "sold": null,
+        "first_seen": "2026-07-24",
+        "last_seen": "2026-07-24",
+        "nuevo": true
       },
       "local": {
         "title": "Balanza Cocina Digital 10kg Precisión 1g Pantalla Lcd Cocina",
@@ -357,160 +430,6 @@
         "currency": "ARS",
         "permalink": "https://click1.mercadolibre.com.ar/mclics/clicks/external/MLA/count",
         "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_972403-MLA107394828944_032026-E.webp"
-      }
-    },
-    {
-      "score": 0.584,
-      "import": {
-        "title": "Cortador Y Picador De Verduras Multifunción Con Recipientes Gris Oscuro",
-        "price": 20910,
-        "currency": "ARS",
-        "permalink": "https://www.mercadolibre.com.ar/cortador-y-picador-de-verduras-multifuncion-con-recipientes-gris-oscuro/p/MLA2051582008",
-        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_770674-CBT104435623733_012026-E.webp",
-        "seller": "—",
-        "confidence": "alta",
-        "signals": [
-          "Envío internacional (filtro de ML)"
-        ]
-      },
-      "local": {
-        "title": "Cortador Picador De Verduras Frutas Multiuso 1 Set 16 Piezas Gris Oscuro",
-        "price": 42900,
-        "currency": "ARS",
-        "permalink": "https://www.mercadolibre.com.ar/cortador-picador-de-verduras-frutas-multiuso-1-set-16-piezas-gris-oscuro/p/MLA75541928",
-        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_964241-MLA113447381246_072026-E.webp"
-      }
-    },
-    {
-      "score": 0.583,
-      "import": {
-        "title": "Afilador Eléctrico De Cuchillos De Cocina Doméstico Blanco",
-        "price": 23881,
-        "currency": "ARS",
-        "permalink": "https://www.mercadolibre.com.ar/afilador-electrico-de-cuchillos-domestico-5v-ylcp/p/MLA2067602605",
-        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_718123-CBT105779355320_022026-E.webp",
-        "seller": "—",
-        "confidence": "alta",
-        "signals": [
-          "Envío internacional (filtro de ML)"
-        ]
-      },
-      "local": {
-        "title": "Afilador Eléctrico De Cuchillos Para Cocina Recargable Usb",
-        "price": 31572,
-        "currency": "ARS",
-        "permalink": "https://www.mercadolibre.com.ar/afilador-electrico-de-cuchillos-para-cocina-recargable-usb/up/MLAU4190295353",
-        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_882094-MLA112833161230_072026-E.webp"
-      }
-    },
-    {
-      "score": 0.583,
-      "import": {
-        "title": "Juego De 2 Peladores De Acero Inoxidable Con Mango De Madera",
-        "price": 11335,
-        "currency": "ARS",
-        "permalink": "https://www.mercadolibre.com.ar/pelador-de-verduras-3-en-1-con-triturador-de-cebolletas/p/MLA2047303868",
-        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_735642-CBT111058232247_042026-E.webp",
-        "seller": "—",
-        "confidence": "alta",
-        "signals": [
-          "Envío internacional (filtro de ML)"
-        ]
-      },
-      "local": {
-        "title": "Juego De Peladores De Acero Inoxidable 3 Piezas Para Verdura",
-        "price": 90933,
-        "currency": "ARS",
-        "permalink": "https://www.mercadolibre.com.ar/juego-de-peladores-de-acero-inoxidable-3-piezas-para-verdura/up/MLAU3550442799",
-        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_823273-MLA97972733463_112025-E.webp"
-      }
-    },
-    {
-      "score": 0.556,
-      "import": {
-        "title": "Pelador Juliana Múltiple De Acero Inoxidable Para Verduras",
-        "price": 10463,
-        "currency": "ARS",
-        "permalink": "https://www.mercadolibre.com.ar/pelador-de-verduras-y-frutas-de-acero-inoxidable/p/MLA2058290137",
-        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_839342-CBT100754223050_122025-E.webp",
-        "seller": "—",
-        "confidence": "alta",
-        "signals": [
-          "Envío internacional (filtro de ML)"
-        ]
-      },
-      "local": {
-        "title": "Pelador Juliana Verduras Acero Inox Profesional Microplane",
-        "price": 75870,
-        "currency": "ARS",
-        "permalink": "https://www.mercadolibre.com.ar/pelador-juliana-verduras-acero-inox-profesional-microplane/up/MLAU3194014874",
-        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_687743-MLA85082267671_052025-E.webp"
-      }
-    },
-    {
-      "score": 0.556,
-      "import": {
-        "title": "Aceitera De Vidrio 2 En 1 Con Pico Y Spray 470 Ml Negro",
-        "price": 22880,
-        "currency": "ARS",
-        "permalink": "https://www.mercadolibre.com.ar/aceitera-de-vidrio-2-en-1-con-pico-y-spray-470-ml-negro/p/MLA2030935516",
-        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_619264-CBT110627745982_052026-E.webp",
-        "seller": "—",
-        "confidence": "alta",
-        "signals": [
-          "Envío internacional (filtro de ML)"
-        ]
-      },
-      "local": {
-        "title": "Rociador Aceite De Vidrio Negro Aceitera Doble Pico",
-        "price": 16999,
-        "currency": "ARS",
-        "permalink": "https://click1.mercadolibre.com.ar/mclics/clicks/external/MLA/count",
-        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_751000-MLA112542891778_062026-E.webp"
-      }
-    },
-    {
-      "score": 0.55,
-      "import": {
-        "title": "Set 6 Tapas De Silicona Extensibles Para Sellar Alimentos",
-        "price": 13757,
-        "currency": "ARS",
-        "permalink": "https://www.mercadolibre.com.ar/set-6-tapas-de-silicona-extensibles-para-sellar-alimentos/up/MLAU3720638180",
-        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_617325-CBT104185775749_012026-E.webp",
-        "seller": "—",
-        "confidence": "alta",
-        "signals": [
-          "Envío internacional (filtro de ML)"
-        ]
-      },
-      "local": {
-        "title": "Set De 6 Tapas De Silicona Extensibles Reutilizables",
-        "price": 5999,
-        "currency": "ARS",
-        "permalink": "https://www.mercadolibre.com.ar/set-de-6-tapas-de-silicona-extensibles-reutilizables/up/MLAU298040263",
-        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_932980-MLA43336665576_092020-E.webp"
-      }
-    },
-    {
-      "score": 0.536,
-      "import": {
-        "title": "Set Embudo Y Pinza Para Frascos De Acero Inoxidable X4 Pzs",
-        "price": 27531,
-        "currency": "ARS",
-        "permalink": "https://www.mercadolibre.com.ar/kit-embudo-acero-inoxidable-y-pinza-para-frascos-plateado/p/MLA2058241571",
-        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_633766-CBT108055127116_032026-E.webp",
-        "seller": "—",
-        "confidence": "alta",
-        "signals": [
-          "Envío internacional (filtro de ML)"
-        ]
-      },
-      "local": {
-        "title": "Set De Embudo Y Pinza Para Conservas Acero Inoxidable",
-        "price": 103070,
-        "currency": "ARS",
-        "permalink": "https://www.mercadolibre.com.ar/set-de-embudo-y-pinza-para-conservas-acero-inoxidable/up/MLAU3396761187",
-        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_740323-MLA91182799824_092025-E.webp"
       }
     },
     {
@@ -525,7 +444,11 @@
         "confidence": "alta",
         "signals": [
           "Envío internacional (filtro de ML)"
-        ]
+        ],
+        "sold": null,
+        "first_seen": "2026-07-24",
+        "last_seen": "2026-07-24",
+        "nuevo": true
       },
       "local": {
         "title": "Balanza Alimentos Cocina Digital 1gr A 10kg Alta Precision Capacidad máxima 10000 g Color Blanco",
@@ -536,25 +459,29 @@
       }
     },
     {
-      "score": 0.508,
+      "score": 0.619,
       "import": {
-        "title": "Picadora Manual De Verduras Y Cebolla Con Cordón Retráctil Azul",
-        "price": 12966,
+        "title": "Batidor Espumador De Leche Eléctrico Recargable 3 Velocidade",
+        "price": 16938,
         "currency": "ARS",
-        "permalink": "https://www.mercadolibre.com.ar/picadora-manual-de-verduras-y-cebolla-con-cordon-retractil-azul/p/MLA2062022054",
-        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_716307-CBT103251888277_122025-E.webp",
+        "permalink": "https://www.mercadolibre.com.ar/batidor-espumador-de-leche-electrico-recargable-3-velocidade/p/MLA2051263726",
+        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_701572-CBT110381273740_052026-E.webp",
         "seller": "—",
         "confidence": "alta",
         "signals": [
           "Envío internacional (filtro de ML)"
-        ]
+        ],
+        "sold": null,
+        "first_seen": "2026-07-24",
+        "last_seen": "2026-07-24",
+        "nuevo": true
       },
       "local": {
-        "title": "Picadora Manual De Verduras Con Cuerda Retráctil Cocin",
-        "price": 12000,
+        "title": "Espumador De Leche Eléctrico Recargable 3 Velocidades",
+        "price": 14000,
         "currency": "ARS",
-        "permalink": "https://www.mercadolibre.com.ar/picadora-manual-de-verduras-con-cuerda-retractil-cocin/up/MLAU4247502540",
-        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_797093-MLA113040201202_072026-E.webp"
+        "permalink": "https://www.mercadolibre.com.ar/espumador-de-leche-electrico-recargable-3-velocidades/p/MLA45203393",
+        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_777626-MLA81698419341_122024-E.webp"
       }
     },
     {
@@ -569,7 +496,11 @@
         "confidence": "alta",
         "signals": [
           "Envío internacional (filtro de ML)"
-        ]
+        ],
+        "sold": null,
+        "first_seen": "2026-07-24",
+        "last_seen": "2026-07-24",
+        "nuevo": true
       },
       "local": {
         "title": "Combo Parrillero Cubiertos + Tabla Bambu Asador Completo",
@@ -580,25 +511,55 @@
       }
     },
     {
-      "score": 0.487,
+      "score": 0.55,
       "import": {
-        "title": "4 Piezas Pelapapas Multifuncional Acero Inoxidable",
-        "price": 20281,
+        "title": "Set 6 Tapas De Silicona Extensibles Para Sellar Alimentos",
+        "price": 13757,
         "currency": "ARS",
-        "permalink": "https://articulo.mercadolibre.com.ar/MLA-1764864237-4-piezas-pelapapas-multifuncional-acero-inoxidable-_JM",
-        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_829096-CBT110904783043_042026-E.webp",
+        "permalink": "https://www.mercadolibre.com.ar/set-6-tapas-de-silicona-extensibles-para-sellar-alimentos/up/MLAU3720638180",
+        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_617325-CBT104185775749_012026-E.webp",
         "seller": "—",
         "confidence": "alta",
         "signals": [
           "Envío internacional (filtro de ML)"
-        ]
+        ],
+        "sold": null,
+        "first_seen": "2026-07-24",
+        "last_seen": "2026-07-24",
+        "nuevo": true
       },
       "local": {
-        "title": "Pelapapas De Acero Inoxidable Premium - Sheshu Home",
-        "price": 5100,
+        "title": "Set De 6 Tapas De Silicona Extensibles Reutilizables",
+        "price": 5999,
         "currency": "ARS",
-        "permalink": "https://www.mercadolibre.com.ar/pelapapas-de-acero-inoxidable-premium-sheshu-home/p/MLA28292888",
-        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_977107-MLA99508085244_112025-E.webp"
+        "permalink": "https://www.mercadolibre.com.ar/set-de-6-tapas-de-silicona-extensibles-reutilizables/up/MLAU298040263",
+        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_932980-MLA43336665576_092020-E.webp"
+      }
+    },
+    {
+      "score": 0.508,
+      "import": {
+        "title": "Picadora Manual De Verduras Y Cebolla Con Cordón Retráctil Azul",
+        "price": 12966,
+        "currency": "ARS",
+        "permalink": "https://www.mercadolibre.com.ar/picadora-manual-de-verduras-y-cebolla-con-cordon-retractil-azul/p/MLA2062022054",
+        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_716307-CBT103251888277_122025-E.webp",
+        "seller": "—",
+        "confidence": "alta",
+        "signals": [
+          "Envío internacional (filtro de ML)"
+        ],
+        "sold": null,
+        "first_seen": "2026-07-24",
+        "last_seen": "2026-07-24",
+        "nuevo": true
+      },
+      "local": {
+        "title": "Picadora Manual De Verduras Con Cuerda Retráctil Cocin",
+        "price": 12000,
+        "currency": "ARS",
+        "permalink": "https://www.mercadolibre.com.ar/picadora-manual-de-verduras-con-cuerda-retractil-cocin/up/MLAU4247502540",
+        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_797093-MLA113040201202_072026-E.webp"
       }
     },
     {
@@ -613,7 +574,11 @@
         "confidence": "alta",
         "signals": [
           "Envío internacional (filtro de ML)"
-        ]
+        ],
+        "sold": null,
+        "first_seen": "2026-07-24",
+        "last_seen": "2026-07-24",
+        "nuevo": true
       },
       "local": {
         "title": "Molde De Policarbonato Bombones Chocolates La Botica Makers",
@@ -621,6 +586,162 @@
         "currency": "ARS",
         "permalink": "https://www.mercadolibre.com.ar/molde-de-policarbonato-bombones-chocolates-la-botica-makers/up/MLAU3908284605",
         "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_647671-MLA110705259417_042026-E.webp"
+      }
+    },
+    {
+      "score": 0.635,
+      "import": {
+        "title": "Bowl De Acero Inoxidable Con Rallador Y Rebanador De Cocina Plateado",
+        "price": 12853,
+        "currency": "ARS",
+        "permalink": "https://www.mercadolibre.com.ar/bowl-acero-inoxidable-24-cm-con-tapa-rallador-multifuncion/p/MLA2060309877",
+        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_742177-CBT104100338616_012026-E.webp",
+        "seller": "—",
+        "confidence": "alta",
+        "signals": [
+          "Envío internacional (filtro de ML)"
+        ],
+        "sold": null,
+        "first_seen": "2026-07-24",
+        "last_seen": "2026-07-24",
+        "nuevo": true
+      },
+      "local": {
+        "title": "Bowl Batidor Acero Inoxidable Con Rebanador Y Rallador 26 Cm",
+        "price": 32775,
+        "currency": "ARS",
+        "permalink": "https://articulo.mercadolibre.com.ar/MLA-1142614428-bowl-batidor-acero-inoxidable-con-rebanador-y-rallador-26-cm-_JM",
+        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_725381-MLA50316025566_062022-E.webp"
+      }
+    },
+    {
+      "score": 0.929,
+      "import": {
+        "title": "Afilador Manual 4 En 1 Para Cuchillos Y Tijeras Black Red",
+        "price": 11432,
+        "currency": "ARS",
+        "permalink": "https://www.mercadolibre.com.ar/afilador-de-cuchillos-4-en-1-de-acero-inoxidable-para-cocina-alta-calidad/p/MLA2058227945",
+        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_667839-CBT110265719465_042026-E.webp",
+        "seller": "—",
+        "confidence": "alta",
+        "signals": [
+          "Envío internacional (filtro de ML)"
+        ],
+        "sold": null,
+        "first_seen": "2026-07-24",
+        "last_seen": "2026-07-24",
+        "nuevo": true
+      },
+      "local": {
+        "title": "Afilador De Cuchillos 3 En 1 Manual Tijeras Black Red Cocina",
+        "price": 11000,
+        "currency": "ARS",
+        "permalink": "https://www.mercadolibre.com.ar/afilador-de-cuchillos-3-en-1-manual-tijeras-black-red-cocina/up/MLAU4096457454",
+        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_641512-MLA114515015793_072026-E.webp"
+      }
+    },
+    {
+      "score": 0.583,
+      "import": {
+        "title": "Juego De 2 Peladores De Acero Inoxidable Con Mango De Madera",
+        "price": 11335,
+        "currency": "ARS",
+        "permalink": "https://www.mercadolibre.com.ar/pelador-de-verduras-3-en-1-con-triturador-de-cebolletas/p/MLA2047303868",
+        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_735642-CBT111058232247_042026-E.webp",
+        "seller": "—",
+        "confidence": "alta",
+        "signals": [
+          "Envío internacional (filtro de ML)"
+        ],
+        "sold": null,
+        "first_seen": "2026-07-24",
+        "last_seen": "2026-07-24",
+        "nuevo": true
+      },
+      "local": {
+        "title": "Juego De Peladores De Acero Inoxidable 3 Piezas Para Verdura",
+        "price": 90933,
+        "currency": "ARS",
+        "permalink": "https://www.mercadolibre.com.ar/juego-de-peladores-de-acero-inoxidable-3-piezas-para-verdura/up/MLAU3550442799",
+        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_823273-MLA97972733463_112025-E.webp"
+      }
+    },
+    {
+      "score": 0.635,
+      "import": {
+        "title": "Tabla De Corte Doble Faz De Acero Inoxidable Gruesa",
+        "price": 10947,
+        "currency": "ARS",
+        "permalink": "https://www.mercadolibre.com.ar/tabla-de-corte-doble-faz-de-acero-inoxidable-gruesa/up/MLAU3780420820",
+        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_734026-CBT111430267458_052026-E.webp",
+        "seller": "—",
+        "confidence": "alta",
+        "signals": [
+          "Envío internacional (filtro de ML)"
+        ],
+        "sold": null,
+        "first_seen": "2026-07-24",
+        "last_seen": "2026-07-24",
+        "nuevo": true
+      },
+      "local": {
+        "title": "Tabla De Picar Acero Inoxidable Doble Faz Antibacterial",
+        "price": 47015,
+        "currency": "ARS",
+        "permalink": "https://www.mercadolibre.com.ar/tabla-de-picar-acero-inoxidable-doble-faz-antibacterial/up/MLAU3839854558",
+        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_725027-MLA108420092703_032026-E.webp"
+      }
+    },
+    {
+      "score": 0.556,
+      "import": {
+        "title": "Pelador Juliana Múltiple De Acero Inoxidable Para Verduras",
+        "price": 10463,
+        "currency": "ARS",
+        "permalink": "https://www.mercadolibre.com.ar/pelador-de-verduras-y-frutas-de-acero-inoxidable/p/MLA2058290137",
+        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_839342-CBT100754223050_122025-E.webp",
+        "seller": "—",
+        "confidence": "alta",
+        "signals": [
+          "Envío internacional (filtro de ML)"
+        ],
+        "sold": null,
+        "first_seen": "2026-07-24",
+        "last_seen": "2026-07-24",
+        "nuevo": true
+      },
+      "local": {
+        "title": "Pelador Juliana Verduras Acero Inox Profesional Microplane",
+        "price": 75870,
+        "currency": "ARS",
+        "permalink": "https://www.mercadolibre.com.ar/pelador-juliana-verduras-acero-inox-profesional-microplane/up/MLAU3194014874",
+        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_687743-MLA85082267671_052025-E.webp"
+      }
+    },
+    {
+      "score": 0.774,
+      "import": {
+        "title": "Termómetro Digital De Cocina Para Carne Y Repostería Plateado",
+        "price": 9736,
+        "currency": "ARS",
+        "permalink": "https://www.mercadolibre.com.ar/termometro-digital-de-cocina-para-carne-y-reposteria-plateado/p/MLA2051507278",
+        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_816007-CBT107500475388_032026-E.webp",
+        "seller": "—",
+        "confidence": "alta",
+        "signals": [
+          "Envío internacional (filtro de ML)"
+        ],
+        "sold": null,
+        "first_seen": "2026-07-24",
+        "last_seen": "2026-07-24",
+        "nuevo": true
+      },
+      "local": {
+        "title": "Termómetro De Cocina Digital Para Barbacoa Carne Reposteria",
+        "price": 38749,
+        "currency": "ARS",
+        "permalink": "https://www.mercadolibre.com.ar/termometro-de-cocina-digital-para-barbacoa-carne-reposteria/up/MLAU354670887",
+        "thumbnail": "https://http2.mlstatic.com/D_Q_NP_2X_945610-MLA102612765074_122025-E.webp"
       }
     }
   ]
