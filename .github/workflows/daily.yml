@@ -1,50 +1,30 @@
-name: Radar Importados (diario)
+name: Publicar panel
 
-# Corre solo, todos los días. No necesitás tener nada encendido.
+# Publica el panel (index.html + data.json) en GitHub Pages.
+# Se dispara cada vez que se sube un cambio a main — por ejemplo cuando el
+# programa que corre en tu PC actualiza data.json con los importados del día.
 on:
-  schedule:
-    - cron: "0 12 * * *"   # 12:00 UTC = 09:00 Argentina (UTC-3)
-  workflow_dispatch: {}     # botón para ejecutarlo manualmente cuando quieras
   push:
-    branches: [main]        # también corre en cada push a main (arranca solo)
+    branches: [main]
+  workflow_dispatch: {}
 
 permissions:
-  contents: write           # para commitear data.json
-  pages: write              # para publicar el panel
+  pages: write
   id-token: write
+  contents: read
 
 concurrency:
   group: radar-pages
   cancel-in-progress: false
 
 jobs:
-  scan:
+  publish:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
-
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      - run: pip install pynacl
-
-      - name: Ejecutar agente
-        env:
-          ML_CLIENT_ID: ${{ secrets.ML_CLIENT_ID }}
-          ML_CLIENT_SECRET: ${{ secrets.ML_CLIENT_SECRET }}
-          ML_REFRESH_TOKEN: ${{ secrets.ML_REFRESH_TOKEN }}
-          GH_PAT: ${{ secrets.GH_PAT }}
-          RADAR_DEBUG: "1"
-        run: python agent.py
-
-      - name: Guardar data.json en el repo
-        run: |
-          git config user.name  "radar-bot"
-          git config user.email "radar-bot@users.noreply.github.com"
-          git add data.json
-          git commit -m "Actualizar resultados $(date -u +%F)" || echo "sin cambios"
-          git push || echo "nada que pushear"
 
       - name: Habilitar GitHub Pages (automático)
         uses: actions/configure-pages@v5
@@ -61,12 +41,5 @@ jobs:
         with:
           path: _site
 
-  publish:
-    needs: scan
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
-    steps:
       - id: deploy
         uses: actions/deploy-pages@v4
