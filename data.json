@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-07-24T10:34:16-03:00",
+  "generated_at": "2026-07-24T13:43:26-03:00",
   "site": "MLA",
-  "mode": "esperando_config",
+  "mode": "API",
   "filter": "SHIPPING_ORIGIN=10215069 (internacional)",
   "query_terms": [
     "utensilios cocina",
@@ -14,6 +14,5 @@
     "organizador cocina"
   ],
   "count": 0,
-  "items": [],
-  "note": "Configurá los secretos ML_CLIENT_ID, ML_CLIENT_SECRET y ML_REFRESH_TOKEN para activar el radar."
+  "items": []
 }
