@@ -27,6 +27,12 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Sonda de diagnóstico (temporal)
+        continue-on-error: true
+        env:
+          ML_ACCESS_TOKEN: ${{ secrets.ML_ACCESS_TOKEN }}
+        run: python probe.py
+
       - name: Ejecutar agente
         env:
           # Opcional: si cargás el secret, usa la API oficial. Si no, hace scraping.
