@@ -40,7 +40,7 @@
   }
   * { box-sizing: border-box; }
   body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--sans); line-height: 1.5; -webkit-font-smoothing: antialiased; }
-  .wrap { max-width: 940px; margin: 0 auto; padding: clamp(20px,4vw,44px) 20px 64px; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: clamp(20px,4vw,44px) 20px 64px; }
 
   .demo-banner { display: none; background: var(--accent-soft); color: var(--accent-ink); border: 1px solid var(--accent); border-radius: 11px; padding: 11px 15px; font-size: .84rem; margin-bottom: 20px; }
   body.is-demo .demo-banner { display: block; }
@@ -71,33 +71,42 @@
   #search { flex: 1; border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 11px; padding: 11px 15px; font-size: .95rem; font-family: inherit; }
   #search:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
 
-  .list { display: grid; gap: 12px; }
-  .card { display: grid; grid-template-columns: 84px 1fr auto; gap: 16px; align-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 15px; box-shadow: var(--shadow); }
-  .thumb { width: 84px; height: 84px; border-radius: 10px; object-fit: cover; background: var(--surface-2); border: 1px solid var(--line); }
-  .thumb-fallback { display: grid; place-items: center; font-size: 1.6rem; color: var(--ink-faint); }
-  .info { min-width: 0; }
-  .title { font-size: .96rem; font-weight: 600; margin: 0 0 6px; line-height: 1.35; }
-  .badge { font-size: .68rem; font-weight: 650; text-transform: uppercase; letter-spacing: .05em; padding: 3px 9px; border-radius: 99px; display: inline-flex; align-items: center; gap: 4px; }
+  .list { display: grid; gap: 14px; }
+  .list.cards { grid-template-columns: repeat(auto-fill, minmax(195px, 1fr)); align-items: start; }
+
+  /* Tarjeta estilo Mercado Libre: imagen grande arriba */
+  .pcard { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; box-shadow: var(--shadow); display: flex; flex-direction: column; transition: transform .12s, border-color .15s; }
+  .pcard:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .imgwrap { aspect-ratio: 1 / 1; background: #fff; display: grid; place-items: center; position: relative; }
+  .imgwrap img { width: 100%; height: 100%; object-fit: contain; padding: 10px; }
+  .imgwrap .ph { font-size: 2.6rem; color: #d9cdbf; }
+  .badge { font-size: .66rem; font-weight: 650; text-transform: uppercase; letter-spacing: .05em; padding: 4px 9px; border-radius: 99px; display: inline-flex; align-items: center; gap: 4px; }
   .badge.intl { background: var(--intl-soft); color: var(--intl-ink); }
-  .price-col { text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 9px; }
-  .price { font-size: 1.08rem; font-weight: 680; font-variant-numeric: tabular-nums; white-space: nowrap; }
-  .price small { font-size: .68rem; color: var(--ink-faint); font-weight: 600; display: block; text-transform: uppercase; }
-  .go { text-decoration: none; background: var(--accent); color: #FFF; font-size: .82rem; font-weight: 600; padding: 8px 14px; border-radius: 9px; white-space: nowrap; transition: filter .15s,transform .1s; }
+  .imgwrap .badge { position: absolute; top: 9px; left: 9px; box-shadow: var(--shadow); }
+  .pbody { padding: 12px 14px 15px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+  .ptitle { font-size: .9rem; font-weight: 500; line-height: 1.35; color: var(--ink); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 2.45em; }
+  .pprice { font-size: 1.42rem; font-weight: 680; letter-spacing: -.02em; font-variant-numeric: tabular-nums; margin-top: auto; }
+  .pprice small { font-size: .6rem; color: var(--ink-faint); font-weight: 600; margin-left: 5px; text-transform: uppercase; letter-spacing: .04em; }
+  .go { text-decoration: none; background: var(--accent); color: #FFF; font-size: .8rem; font-weight: 600; padding: 8px 14px; border-radius: 9px; text-align: center; transition: filter .15s, transform .1s; }
   .go:hover { filter: brightness(1.07); } .go:active { transform: scale(.97); }
 
+  /* Comparación lado a lado */
   .cmp { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
   .cmp-head { display: flex; justify-content: space-between; align-items: center; padding: 9px 15px; background: var(--surface-2); border-bottom: 1px solid var(--line); font-size: .76rem; color: var(--ink-soft); }
   .cmp-head b { color: var(--ink); font-variant-numeric: tabular-nums; }
   .cmp-body { display: grid; grid-template-columns: 1fr 1fr; }
-  .side { padding: 15px; display: flex; gap: 13px; min-width: 0; }
+  .side { padding: 15px; min-width: 0; display: flex; flex-direction: column; gap: 9px; }
   .side:first-child { border-right: 1px solid var(--line); }
-  .side .lbl { font-size: .66rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 6px; display: inline-block; }
-  .side.imp .lbl { color: var(--intl-ink); } .side.loc .lbl { color: var(--local-ink); }
-  .side .st { width: 68px; height: 68px; border-radius: 9px; object-fit: cover; background: var(--surface-2); border: 1px solid var(--line); flex: none; }
-  .side .sinfo { min-width: 0; }
-  .side .stitle { font-size: .86rem; font-weight: 550; line-height: 1.3; margin: 2px 0 7px; }
-  .side .sprice { font-size: 1rem; font-weight: 680; font-variant-numeric: tabular-nums; margin-bottom: 8px; }
-  .side .go { font-size: .76rem; padding: 6px 12px; }
+  .side .lbl { font-size: .64rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; align-self: flex-start; padding: 3px 8px; border-radius: 6px; }
+  .side.imp .lbl { color: var(--intl-ink); background: var(--intl-soft); }
+  .side.loc .lbl { color: var(--local-ink); background: var(--local-soft); }
+  .simg { aspect-ratio: 1 / 1; background: #fff; border: 1px solid var(--line); border-radius: 10px; display: grid; place-items: center; overflow: hidden; }
+  .simg img { width: 100%; height: 100%; object-fit: contain; padding: 8px; }
+  .simg .ph { font-size: 2rem; color: #d9cdbf; }
+  .stitle { font-size: .84rem; font-weight: 500; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 2.2em; }
+  .sprice { font-size: 1.12rem; font-weight: 680; font-variant-numeric: tabular-nums; margin-top: auto; }
+  .sprice small { font-size: .58rem; color: var(--ink-faint); font-weight: 600; margin-left: 4px; text-transform: uppercase; }
+  .side .go { align-self: flex-start; font-size: .76rem; padding: 7px 13px; }
   .side.imp .go { background: var(--intl); } .side.loc .go { background: var(--local); }
 
   .empty { text-align: center; padding: 54px 20px; color: var(--ink-faint); }
@@ -109,12 +118,11 @@
   footer { margin-top: 30px; text-align: center; color: var(--ink-faint); font-size: .78rem; }
 
   @media (max-width: 640px) {
-    .card { grid-template-columns: 64px 1fr; grid-template-areas: "thumb info" "price price"; }
-    .thumb { width: 64px; height: 64px; }
-    .price-col { grid-area: price; flex-direction: row; justify-content: space-between; align-items: center; width: 100%; border-top: 1px solid var(--line); padding-top: 11px; }
+    .list.cards { grid-template-columns: repeat(2, 1fr); }
     .cmp-body { grid-template-columns: 1fr; }
     .side:first-child { border-right: none; border-bottom: 1px solid var(--line); }
   }
+  @media (max-width: 380px) { .list.cards { grid-template-columns: 1fr; } }
   @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
   :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 </style>
@@ -165,12 +173,12 @@
     generated_at: "2026-07-24T09:00:00-03:00",
     count_only: 2, count_local: 1,
     only_import: [
-      { title: "Pelador de Verduras Mango de Madera Ergonómico Importado", price: 8990, currency: "ARS", permalink: "https://articulo.mercadolibre.com.ar/MLA-demo-pelador", thumbnail: "" },
-      { title: "Rallador de Tambor Rotativo 3 Cuchillas Acero", price: 31900, currency: "ARS", permalink: "https://articulo.mercadolibre.com.ar/MLA-demo-rallador", thumbnail: "" }
+      { title: "Set Utensilios Cocina Bambú Cuchara Tenedor Espátula Base X4", price: 6929, currency: "ARS", permalink: "https://articulo.mercadolibre.com.ar/MLA-demo-bambu", thumbnail: "" },
+      { title: "Pelador de Verduras Mango de Madera Ergonómico", price: 8990, currency: "ARS", permalink: "https://articulo.mercadolibre.com.ar/MLA-demo-pelador", thumbnail: "" }
     ],
     also_local: [
       { score: 0.72,
-        import: { title: "Colador Chino Cónico Acero Inoxidable 20cm Importado", price: 24500, currency: "ARS", permalink: "https://articulo.mercadolibre.com.ar/MLA-demo-colador-i", thumbnail: "" },
+        import: { title: "Colador Chino Cónico Acero Inoxidable 20cm", price: 24500, currency: "ARS", permalink: "https://articulo.mercadolibre.com.ar/MLA-demo-colador-i", thumbnail: "" },
         local:  { title: "Colador Chino Acero Inoxidable 20 cm Cocina", price: 18700, currency: "ARS", permalink: "https://articulo.mercadolibre.com.ar/MLA-demo-colador-l", thumbnail: "" } }
     ]
   };
@@ -181,38 +189,35 @@
 
   function fmtDate(s) { try { var d = new Date(s); return isNaN(d) ? s : d.toLocaleString("es-AR", { day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit" }); } catch (e) { return s; } }
   function fmtPrice(n) { try { return new Intl.NumberFormat("es-AR").format(n); } catch (e) { return String(n); } }
-  function fallback() { var d = document.createElement("div"); d.className = "thumb thumb-fallback"; d.textContent = "🍴"; return d; }
-
-  function thumbEl(src, cls) {
-    if (src) { var img = document.createElement("img"); img.className = cls; img.src = src; img.alt = ""; img.loading = "lazy";
-      img.onerror = function () { var f = document.createElement("div"); f.className = cls + " thumb-fallback"; f.textContent = "🍴"; img.replaceWith(f); }; return img; }
-    var f = document.createElement("div"); f.className = cls + " thumb-fallback"; f.textContent = "🍴"; return f;
-  }
-
   function priceHTML(it) { return it.price != null ? "$ " + fmtPrice(it.price) + "<small>" + (it.currency || "ARS") + "</small>" : "<small>sin precio</small>"; }
+
+  function imgOrPh(src) {
+    if (src) { var img = document.createElement("img"); img.src = src; img.alt = ""; img.loading = "lazy";
+      img.onerror = function () { var d = document.createElement("div"); d.className = "ph"; d.textContent = "🍴"; img.replaceWith(d); }; return img; }
+    var d = document.createElement("div"); d.className = "ph"; d.textContent = "🍴"; return d;
+  }
   function goLink(it, cls) { var a = document.createElement("a"); a.className = "go" + (cls ? " " + cls : ""); a.href = it.permalink; a.target = "_blank"; a.rel = "noopener noreferrer"; a.textContent = "Ver en ML →"; return a; }
 
   function cardOnly(it) {
-    var card = document.createElement("div"); card.className = "card";
-    card.appendChild(thumbEl(it.thumbnail, "thumb"));
-    var info = document.createElement("div"); info.className = "info";
-    info.innerHTML = '<span class="badge intl">✈ Solo importado</span>';
-    var t = document.createElement("h2"); t.className = "title"; t.textContent = it.title; info.appendChild(t);
-    var col = document.createElement("div"); col.className = "price-col";
-    var pr = document.createElement("div"); pr.className = "price"; pr.innerHTML = priceHTML(it);
-    col.appendChild(pr); col.appendChild(goLink(it));
-    card.appendChild(info); card.appendChild(col); return card;
+    var card = document.createElement("div"); card.className = "pcard";
+    var iw = document.createElement("div"); iw.className = "imgwrap";
+    iw.appendChild(imgOrPh(it.thumbnail));
+    var bd = document.createElement("span"); bd.className = "badge intl"; bd.textContent = "✈ Solo importado"; iw.appendChild(bd);
+    var body = document.createElement("div"); body.className = "pbody";
+    var t = document.createElement("div"); t.className = "ptitle"; t.textContent = it.title;
+    var p = document.createElement("div"); p.className = "pprice"; p.innerHTML = priceHTML(it);
+    body.appendChild(t); body.appendChild(p); body.appendChild(goLink(it));
+    card.appendChild(iw); card.appendChild(body); return card;
   }
 
   function sideEl(it, kind) {
     var s = document.createElement("div"); s.className = "side " + (kind === "imp" ? "imp" : "loc");
-    s.appendChild(thumbEl(it.thumbnail, "st"));
-    var info = document.createElement("div"); info.className = "sinfo";
     var lbl = document.createElement("span"); lbl.className = "lbl"; lbl.textContent = kind === "imp" ? "✈ Importado" : "🏠 Local";
+    var simg = document.createElement("div"); simg.className = "simg"; simg.appendChild(imgOrPh(it.thumbnail));
     var t = document.createElement("div"); t.className = "stitle"; t.textContent = it.title;
-    var pr = document.createElement("div"); pr.className = "sprice"; pr.innerHTML = priceHTML(it);
-    info.appendChild(lbl); info.appendChild(t); info.appendChild(pr); info.appendChild(goLink(it, kind === "imp" ? "" : ""));
-    s.appendChild(info); return s;
+    var p = document.createElement("div"); p.className = "sprice"; p.innerHTML = priceHTML(it);
+    s.appendChild(lbl); s.appendChild(simg); s.appendChild(t); s.appendChild(p); s.appendChild(goLink(it, kind === "imp" ? "" : ""));
+    return s;
   }
 
   function cmpRow(pair) {
@@ -239,6 +244,7 @@
     document.body.classList.toggle("is-demo", isDemo);
 
     var q = searchEl.value.trim().toLowerCase();
+    listEl.className = "list" + (tab === "only" ? " cards" : "");
     listEl.innerHTML = "";
 
     if (tab === "only") {
