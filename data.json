@@ -1,11 +1,19 @@
 {
-  "generated_at": "2026-07-24T10:25:48-03:00",
+  "generated_at": "2026-07-24T10:34:16-03:00",
   "site": "MLA",
-  "mode": "SCRAPE",
+  "mode": "esperando_config",
   "filter": "SHIPPING_ORIGIN=10215069 (internacional)",
   "query_terms": [
-    "utensilios"
+    "utensilios cocina",
+    "bazar cocina",
+    "pelador verduras",
+    "colador cocina",
+    "molde reposteria",
+    "rallador cocina",
+    "set cuchillos cocina",
+    "organizador cocina"
   ],
   "count": 0,
-  "items": []
+  "items": [],
+  "note": "Configurá los secretos ML_CLIENT_ID, ML_CLIENT_SECRET y ML_REFRESH_TOKEN para activar el radar."
 }
