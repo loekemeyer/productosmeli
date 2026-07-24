@@ -37,27 +37,21 @@ A partir de ahí, corre **solo cada día a las 09:00 (hora Argentina)**.
 
 ## Personalizar
 
-- **Qué busca**: editá la lista `QUERY_TERMS` al principio de `agent.py`.
+- **Qué busca (modo scraping)**: editá la lista `LISTING_URLS` en `agent.py`.
+  Para agregar una categoría: entrá a Mercado Libre, filtrá por **"Envío
+  internacional"** y pegá la URL resultante (ya trae el filtro).
+- **Qué busca (modo API)**: editá `QUERY_TERMS` en `agent.py`.
 - **Horario**: cambiá el `cron` en `daily.yml` (está en UTC; 12:00 UTC = 09:00 AR).
-- **Cuán estricto es**: `MIN_CONFIDENCE` en `agent.py` (`alta`, `media` o `baja`).
 
 ## Cómo detecta "solo envío internacional"
 
-Para cada artículo combina varias señales de los datos de ML:
+Usa el **propio filtro de Mercado Libre**: el parámetro de origen de envío
+internacional (`SHIPPING_ORIGIN=10215069`). Todo lo que aparece en esas
+búsquedas es, por construcción, de envío internacional — así que no depende de
+adivinar con heurísticas frágiles. A cada artículo le suma señales de detalle
+cuando están disponibles (país del vendedor, precio en USD).
 
-- etiqueta de producto importado / Cross-Border Trade (**CBT**),
-- modo de envío internacional activo,
-- vendedor con domicilio fuera de Argentina,
-- precio en USD.
-
-Con eso asigna un nivel de **confianza**:
-
-- **alta** — coinciden 2+ señales fuertes,
-- **media** — 1 señal fuerte o 2 débiles,
-- **baja** — candidato a revisar a mano antes de confiar.
-
-> ⚠️ **Importante y honesto:** estas heurísticas son *best-effort*. Mercado Libre
-> no expone un único indicador perfecto de "solo importado", y su HTML/API pueden
-> cambiar. Conviene mirar los primeros resultados reales y ajustar señales y
-> umbrales. Por eso cada ítem lleva su nivel de confianza en vez de afirmar
-> certezas. Si usás el modo scraping, revisá los Términos y Condiciones de ML.
+> ⚠️ **Nota honesta:** el modo *scraping* lee el HTML público de ML, que puede
+> cambiar de estructura con el tiempo; si algún día deja de traer resultados,
+> hay que ajustar los patrones de `agent.py` (o pasar al modo API con token).
+> Revisá los Términos y Condiciones de ML al usar scraping.

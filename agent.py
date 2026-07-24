@@ -2,25 +2,26 @@
 """
 Radar Importados — agente diario para Mercado Libre Argentina (MLA).
 
-Busca términos de bazar/cocina y conserva SOLO los artículos que se consiguen
-mediante envío internacional (productos importados / Cross-Border Trade, "CBT").
+Reúne artículos de bazar y cocina que SOLO se consiguen con envío internacional
+(productos importados / Cross-Border Trade), usando el propio filtro de origen
+de envío internacional de Mercado Libre. Genera `data.json`, que el panel
+`index.html` muestra.
 
-Genera `data.json`, que el panel `index.html` muestra.
+Clave: en Mercado Libre AR, el filtro de la URL
+    ..._SHIPPING*ORIGIN_10215069
+lista únicamente publicaciones cuyo origen de envío es INTERNACIONAL. Por eso
+todo lo que aparece en esas páginas es, por construcción, envío internacional
+—no hace falta adivinar con heurísticas—. Igual conservamos señales extra
+(origen, moneda) para dar detalle.
 
-Dos modos de acceso a datos:
-  1) API oficial  -> si existe la variable de entorno ML_ACCESS_TOKEN.
-                     Más estable y respeta los Términos de ML.
-  2) Scraping HTML -> respaldo si no hay token. Más frágil.
+Dos modos:
+  1) SCRAPE (por defecto) -> recorre las URLs de listado ya filtradas.
+  2) API (si hay ML_ACCESS_TOKEN) -> usa el endpoint oficial con el mismo
+     filtro de origen internacional. Más estable y respeta los Términos de ML.
 
 Uso:
-    python agent.py                 # usa config por defecto (abajo)
+    python agent.py
     ML_ACCESS_TOKEN=xxx python agent.py
-
-Notas de honestidad:
-  - Las heurísticas de "envío internacional" son best-effort. Conviene validarlas
-    contra resultados reales y ajustar los umbrales. Marcamos cada ítem con un
-    nivel de confianza (alta/media/baja) para que ninguna señal débil pase como
-    certeza.
 """
 
 import json
@@ -37,196 +38,55 @@ import urllib.request
 # Configuración
 # --------------------------------------------------------------------------- #
 SITE = "MLA"  # Argentina
-# Términos de bazar y cocina a vigilar. Editá/ampliá esta lista libremente.
-QUERY_TERMS = [
-    "pelador mango madera",
-    "colador chino cocina",
-    "molde silicona reposteria",
-    "rallador tambor",
-    "mortero granito cocina",
-    "exprimidor citricos manual",
-    "tabla de bambu cocina",
-    "set cuchillos damasco",
-    "prensa ajo acero",
-    "espatula silicona reposteria",
-    "batidor globo acero",
-    "utensilios cocina importados",
+
+# ID del filtro "origen de envío = internacional" en Mercado Libre AR.
+INTL_ORIGIN_ID = "10215069"
+
+# URLs de listado YA FILTRADAS por envío internacional. Cada una corresponde a
+# una categoría/búsqueda. Agregá o cambiá las que quieras: entrá a Mercado Libre,
+# filtrá por "Envío internacional" y pegá acá la URL resultante.
+LISTING_URLS = [
+    # Bazar y cocina -> Utensilios, nuevos, solo envío internacional.
+    "https://listado.mercadolibre.com.ar/hogar-muebles-jardin/bazar-cocina/nuevo/"
+    "utensilios_NoIndex_True_SHIPPING*ORIGIN_" + INTL_ORIGIN_ID,
 ]
-LIMIT_PER_TERM = 50          # máx. resultados por término (API pagina de a 50)
-MIN_CONFIDENCE = "baja"      # nivel mínimo a incluir: alta | media | baja
-REQUEST_PAUSE = 1.2          # segundos entre requests (buena vecindad)
+
+# Para el modo API: términos a buscar (se les aplica el filtro internacional).
+QUERY_TERMS = [
+    "utensilios cocina",
+    "bazar cocina",
+    "pelador verduras",
+    "colador cocina",
+    "molde reposteria",
+    "rallador cocina",
+]
+
+MAX_PAGES = 6                # máx. páginas por URL de listado (scrape)
+LIMIT_PER_TERM = 50          # resultados por término (API pagina de a 50)
+REQUEST_PAUSE = 1.4          # segundos entre requests (buena vecindad)
 OUTPUT = os.environ.get("RADAR_OUTPUT", "data.json")
-UA = "RadarImportados/1.0 (+github-actions; kitchen-bazaar-monitor)"
+UA = ("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) "
+      "Chrome/124.0 Safari/537.36 RadarImportados/1.1")
 
 TOKEN = os.environ.get("ML_ACCESS_TOKEN", "").strip()
 
+_RANKS = {"alta": 0, "media": 1, "baja": 2}
+
+
 # --------------------------------------------------------------------------- #
-# HTTP helpers
+# HTTP
 # --------------------------------------------------------------------------- #
-def _get(url, headers=None, timeout=25):
-    req = urllib.request.Request(url, headers=headers or {"User-Agent": UA})
+def _get(url, headers=None, timeout=30):
+    hdrs = {"User-Agent": UA, "Accept-Language": "es-AR,es;q=0.9"}
+    if headers:
+        hdrs.update(headers)
+    req = urllib.request.Request(url, headers=hdrs)
     with urllib.request.urlopen(req, timeout=timeout) as r:
         return r.read().decode("utf-8", "replace"), r.status
 
 
-# --------------------------------------------------------------------------- #
-# Detección de "solo envío internacional"
-# --------------------------------------------------------------------------- #
-# Palabras que suelen indicar importación / envío desde el exterior.
-INTL_HINTS = [
-    "envío internacional", "envio internacional", "international",
-    "producto importado", "importado", "cross border", "cbt",
-    "desde el exterior", "demora", "aduana", "correo internacional",
-]
-
-
-def _confidence(signals):
-    """Deriva un nivel de confianza a partir de la cantidad/calidad de señales."""
-    strong = {"tag:cbt", "tag:international", "intl_delivery_mode", "seller_foreign"}
-    strong_hits = sum(1 for s in signals if s in strong)
-    if strong_hits >= 2:
-        return "alta"
-    if strong_hits == 1 or len(signals) >= 2:
-        return "media"
-    return "baja"
-
-
-def classify_api_item(item):
-    """
-    Recibe un ítem del endpoint de búsqueda de la API y decide si es
-    'solo envío internacional'. Devuelve (es_internacional, signals[], labels[]).
-
-    Señales usadas (según disponibilidad en la respuesta de ML):
-      - item['tags'] contiene 'cbt' / 'catalog_boost' / 'international'...
-      - item['international_delivery_mode'] != 'none'
-      - item['shipping']['tags'] con marcas internacionales
-      - moneda USD
-      - vendedor / dirección fuera de Argentina
-    """
-    signals, labels = [], []
-    tags = [str(t).lower() for t in (item.get("tags") or [])]
-
-    if any("cbt" in t for t in tags):
-        signals.append("tag:cbt"); labels.append("Producto importado (CBT)")
-    if any("international" in t for t in tags):
-        signals.append("tag:international"); labels.append("Envío internacional")
-
-    idm = str(item.get("international_delivery_mode", "none")).lower()
-    if idm and idm != "none":
-        signals.append("intl_delivery_mode"); labels.append("Envío internacional")
-
-    shipping = item.get("shipping") or {}
-    ship_tags = [str(t).lower() for t in (shipping.get("tags") or [])]
-    if any("international" in t or "cbt" in t for t in ship_tags):
-        signals.append("tag:international"); labels.append("Envío internacional")
-
-    if str(item.get("currency_id", "")).upper() == "USD":
-        signals.append("currency_usd"); labels.append("Precio en USD")
-
-    addr = item.get("seller_address") or {}
-    country = (addr.get("country") or {}).get("id") or (addr.get("country") or {}).get("name")
-    if country and str(country).upper() not in ("AR", "ARGENTINA"):
-        signals.append("seller_foreign"); labels.append("Vendedor del exterior")
-
-    # dedup preservando orden
-    labels = list(dict.fromkeys(labels))
-    is_intl = len(signals) > 0
-    return is_intl, signals, labels
-
-
-# --------------------------------------------------------------------------- #
-# Modo API oficial
-# --------------------------------------------------------------------------- #
-def search_api(term):
-    q = urllib.parse.quote(term)
-    url = f"https://api.mercadolibre.com/sites/{SITE}/search?q={q}&limit={LIMIT_PER_TERM}"
-    body, status = _get(url, headers={"User-Agent": UA, "Authorization": f"Bearer {TOKEN}"})
-    if status != 200:
-        raise RuntimeError(f"API status {status} para '{term}'")
-    return json.loads(body).get("results", [])
-
-
-def run_api():
-    found = {}
-    for term in QUERY_TERMS:
-        try:
-            results = search_api(term)
-        except Exception as e:
-            print(f"  ! API falló en '{term}': {e}", file=sys.stderr)
-            continue
-        for it in results:
-            is_intl, signals, labels = classify_api_item(it)
-            if not is_intl:
-                continue
-            conf = _confidence(signals)
-            if _rank(conf) > _rank(MIN_CONFIDENCE):
-                continue
-            found[it.get("id")] = {
-                "title": it.get("title", "").strip(),
-                "price": it.get("price"),
-                "currency": it.get("currency_id", "ARS"),
-                "permalink": it.get("permalink", ""),
-                "thumbnail": (it.get("thumbnail") or "").replace("http://", "https://"),
-                "seller": ((it.get("seller") or {}).get("nickname")
-                           or str((it.get("seller") or {}).get("id", "")) or "—"),
-                "confidence": conf,
-                "signals": labels or ["Señal de importación"],
-            }
-        time.sleep(REQUEST_PAUSE)
-    return list(found.values())
-
-
-# --------------------------------------------------------------------------- #
-# Modo respaldo: scraping del listado público
-# --------------------------------------------------------------------------- #
-def run_scrape():
-    found = {}
-    for term in QUERY_TERMS:
-        slug = urllib.parse.quote(term.replace(" ", "-"))
-        url = f"https://listado.mercadolibre.com.ar/{slug}"
-        try:
-            body, status = _get(url, headers={"User-Agent": UA})
-        except Exception as e:
-            print(f"  ! Scrape falló en '{term}': {e}", file=sys.stderr)
-            time.sleep(REQUEST_PAUSE)
-            continue
-
-        # Cada tarjeta suele venir en un bloque <li class="ui-search-layout__item">.
-        for block in re.split(r'ui-search-layout__item', body)[1:]:
-            low = block.lower()
-            if not any(h in low for h in INTL_HINTS):
-                continue  # sin señal internacional -> descartar
-            link = _first(r'href="(https://[^"]*mercadolibre[^"]*?)"', block)
-            title = _clean(_first(r'ui-search-item__title[^>]*>([^<]+)<', block)
-                           or _first(r'class="poly-component__title[^>]*>([^<]+)<', block))
-            price = _first(r'andes-money-amount__fraction[^>]*>([\d\.]+)<', block)
-            if not link or not title:
-                continue
-            labels = []
-            if "internacional" in low:
-                labels.append("Envío internacional")
-            if "importado" in low:
-                labels.append("Producto importado")
-            if "demora" in low or "aduana" in low:
-                labels.append("Demora de importación")
-            conf = "media" if len(labels) >= 2 else "baja"
-            key = link.split("#")[0]
-            found[key] = {
-                "title": title,
-                "price": int(price.replace(".", "")) if price else None,
-                "currency": "ARS",
-                "permalink": key,
-                "thumbnail": "",
-                "seller": "—",
-                "confidence": conf,
-                "signals": labels or ["Señal de importación (scraping)"],
-            }
-        time.sleep(REQUEST_PAUSE)
-    return list(found.values())
-
-
-def _first(pattern, text):
-    m = re.search(pattern, text)
+def _first(pattern, text, flags=0):
+    m = re.search(pattern, text, flags)
     return m.group(1) if m else ""
 
 
@@ -234,9 +94,125 @@ def _clean(s):
     return html.unescape(s).strip() if s else s
 
 
-_RANKS = {"alta": 0, "media": 1, "baja": 2}
-def _rank(c):  # noqa: E704
-    return _RANKS.get(c, 9)
+# --------------------------------------------------------------------------- #
+# Modo SCRAPE — recorre listados ya filtrados por envío internacional
+# --------------------------------------------------------------------------- #
+def _parse_cards(body):
+    """Extrae (title, link, price, thumbnail) de cada tarjeta del listado."""
+    out = []
+    # Cada resultado viene envuelto en <li class="ui-search-layout__item ...">.
+    blocks = re.split(r'ui-search-layout__item', body)[1:]
+    for block in blocks:
+        # Link + título: el markup moderno usa la clase poly-component__title;
+        # el clásico usa ui-search-item__title. Probamos ambos.
+        link = _first(r'href="(https://(?:articulo|www)\.mercadolibre\.com\.ar/[^"]+)"', block) \
+            or _first(r'href="(https://[^"]*mercadolibre[^"]*/p/[^"]+)"', block)
+        title = _clean(
+            _first(r'poly-component__title[^>]*>([^<]+)<', block)
+            or _first(r'ui-search-item__title[^>]*>([^<]+)<', block)
+            or _first(r'<a[^>]*poly-component__title"[^>]*>([^<]+)</a>', block)
+        )
+        price = _first(r'andes-money-amount__fraction[^>]*>([\d\.]+)<', block)
+        thumb = _first(r'(?:data-src|src)="(https://http2\.mlstatic\.com/[^"]+)"', block)
+        if not link or not title:
+            continue
+        out.append({
+            "title": title,
+            "link": link.split("#")[0].split("?")[0],
+            "price": int(price.replace(".", "")) if price else None,
+            "thumbnail": thumb,
+        })
+    return out
+
+
+def _next_url(body):
+    """Encuentra la URL de la página siguiente del listado, si existe."""
+    nxt = _first(r'<link rel="next" href="([^"]+)"', body)
+    if nxt:
+        return html.unescape(nxt)
+    # Botón "Siguiente" de la paginación de Andes.
+    m = re.search(r'andes-pagination__button--next[^>]*>.*?href="([^"]+)"', body, re.S)
+    if m:
+        return html.unescape(m.group(1))
+    m = re.search(r'href="([^"]+)"[^>]*title="Siguiente"', body)
+    return html.unescape(m.group(1)) if m else ""
+
+
+def run_scrape():
+    found = {}
+    for base in LISTING_URLS:
+        url, pages = base, 0
+        while url and pages < MAX_PAGES:
+            try:
+                body, status = _get(url)
+            except Exception as e:
+                print(f"  ! Scrape falló ({url[:70]}...): {e}", file=sys.stderr)
+                break
+            cards = _parse_cards(body)
+            print(f"  · página {pages + 1}: {len(cards)} artículos")
+            for c in cards:
+                # Todo lo de estas páginas ya está filtrado a envío internacional.
+                found[c["link"]] = {
+                    "title": c["title"],
+                    "price": c["price"],
+                    "currency": "ARS",
+                    "permalink": c["link"],
+                    "thumbnail": c["thumbnail"] or "",
+                    "seller": "—",
+                    "confidence": "alta",
+                    "signals": ["Envío internacional (filtro de ML)"],
+                }
+            if not cards:
+                break
+            url = _next_url(body)
+            pages += 1
+            time.sleep(REQUEST_PAUSE)
+    return list(found.values())
+
+
+# --------------------------------------------------------------------------- #
+# Modo API — endpoint oficial con el mismo filtro de origen internacional
+# --------------------------------------------------------------------------- #
+def _api_signals(item):
+    labels = ["Envío internacional (filtro de ML)"]
+    addr = item.get("seller_address") or {}
+    country = (addr.get("country") or {}).get("name") or (addr.get("country") or {}).get("id")
+    if country and str(country).upper() not in ("AR", "ARGENTINA"):
+        labels.append(f"Vendedor: {country}")
+    if str(item.get("currency_id", "")).upper() == "USD":
+        labels.append("Precio en USD")
+    return list(dict.fromkeys(labels))
+
+
+def run_api():
+    found = {}
+    for term in QUERY_TERMS:
+        q = urllib.parse.quote(term)
+        url = (f"https://api.mercadolibre.com/sites/{SITE}/search"
+               f"?q={q}&limit={LIMIT_PER_TERM}&shipping_origin={INTL_ORIGIN_ID}")
+        try:
+            body, status = _get(url, headers={"Authorization": f"Bearer {TOKEN}"})
+            if status != 200:
+                raise RuntimeError(f"status {status}")
+            results = json.loads(body).get("results", [])
+        except Exception as e:
+            print(f"  ! API falló en '{term}': {e}", file=sys.stderr)
+            continue
+        print(f"  · '{term}': {len(results)} artículos")
+        for it in results:
+            found[it.get("id")] = {
+                "title": (it.get("title") or "").strip(),
+                "price": it.get("price"),
+                "currency": it.get("currency_id", "ARS"),
+                "permalink": it.get("permalink", ""),
+                "thumbnail": (it.get("thumbnail") or "").replace("http://", "https://"),
+                "seller": ((it.get("seller") or {}).get("nickname")
+                           or str((it.get("seller") or {}).get("id", "")) or "—"),
+                "confidence": "alta",
+                "signals": _api_signals(it),
+            }
+        time.sleep(REQUEST_PAUSE)
+    return list(found.values())
 
 
 # --------------------------------------------------------------------------- #
@@ -244,18 +220,19 @@ def _rank(c):  # noqa: E704
 # --------------------------------------------------------------------------- #
 def main():
     mode = "API" if TOKEN else "SCRAPE"
-    print(f"Radar Importados · sitio={SITE} · modo={mode} · términos={len(QUERY_TERMS)}")
+    print(f"Radar Importados · sitio={SITE} · modo={mode}")
     items = run_api() if TOKEN else run_scrape()
 
-    # Orden: confianza y luego precio.
-    items.sort(key=lambda x: (_rank(x["confidence"]), x.get("price") or 1e12))
+    items.sort(key=lambda x: (_RANKS.get(x["confidence"], 9), x.get("price") or 1e12))
 
     now = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=-3)))
     out = {
         "generated_at": now.isoformat(timespec="seconds"),
         "site": SITE,
         "mode": mode,
-        "query_terms": QUERY_TERMS,
+        "filter": f"SHIPPING_ORIGIN={INTL_ORIGIN_ID} (internacional)",
+        "query_terms": QUERY_TERMS if TOKEN else [u.split("/nuevo/")[-1].split("_")[0]
+                                                  for u in LISTING_URLS],
         "count": len(items),
         "items": items,
     }
