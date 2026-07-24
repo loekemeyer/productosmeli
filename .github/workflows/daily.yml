@@ -35,6 +35,7 @@ jobs:
           ML_CLIENT_SECRET: ${{ secrets.ML_CLIENT_SECRET }}
           ML_REFRESH_TOKEN: ${{ secrets.ML_REFRESH_TOKEN }}
           GH_PAT: ${{ secrets.GH_PAT }}
+          RADAR_DEBUG: "1"
         run: python agent.py
 
       - name: Guardar data.json en el repo

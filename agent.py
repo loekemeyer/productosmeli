@@ -114,6 +114,29 @@ def item_signals(it):
     return list(dict.fromkeys(labels))
 
 
+def probe_endpoints(access):
+    """Diagnóstico: prueba varios endpoints con el MISMO access token."""
+    import urllib.error
+    tests = [
+        ("users/me", "https://api.mercadolibre.com/users/me"),
+        ("search plano", "https://api.mercadolibre.com/sites/MLA/search?q=pelador&limit=1"),
+        ("search intl", "https://api.mercadolibre.com/sites/MLA/search?q=pelador&limit=1&shipping_origin=10215069"),
+        ("products/search", "https://api.mercadolibre.com/products/search?site_id=MLA&q=pelador&status=active"),
+        ("highlights", "https://api.mercadolibre.com/highlights/MLA/category/MLA1574"),
+    ]
+    for name, url in tests:
+        try:
+            req = urllib.request.Request(url, headers={"Authorization": f"Bearer {access}"})
+            with urllib.request.urlopen(req, timeout=25) as r:
+                body = r.read(220).decode("utf-8", "replace").replace("\n", " ")
+                print(f"  [probe] {name}: HTTP {r.status} · {body[:180]}")
+        except urllib.error.HTTPError as e:
+            body = e.read(220).decode("utf-8", "replace").replace("\n", " ") if e.fp else ""
+            print(f"  [probe] {name}: HTTP {e.code} · {body[:180]}")
+        except Exception as e:
+            print(f"  [probe] {name}: {type(e).__name__}: {e}")
+
+
 def main():
     if not (CLIENT_ID and CLIENT_SECRET and REFRESH_TOKEN):
         print("Faltan credenciales de la API de ML. Escribo estado de espera.")
@@ -124,6 +147,9 @@ def main():
 
     print(f"Radar Importados · sitio={SITE} · modo=API")
     access = get_access_token()
+
+    if os.environ.get("RADAR_DEBUG"):
+        probe_endpoints(access)
 
     found = {}
     for term in QUERY_TERMS:
