@@ -39,6 +39,11 @@ jobs:
           git commit -m "Actualizar resultados $(date -u +%F)" || echo "sin cambios"
           git push || echo "nada que pushear"
 
+      - name: Habilitar GitHub Pages (automático)
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
       - name: Preparar sitio
         run: |
           mkdir -p _site
