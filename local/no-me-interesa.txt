@@ -1,0 +1,10 @@
+# Palabras que NO te interesan (opcional, avanzado).
+# El radar excluye para siempre cualquier producto cuyo título contenga
+# alguna de estas palabras. Una palabra o frase por línea.
+# Las líneas que empiezan con # son comentarios y se ignoran.
+#
+# Ejemplos (borralos y poné los tuyos):
+# cosmetica
+# bebe
+# vela
+# mascota

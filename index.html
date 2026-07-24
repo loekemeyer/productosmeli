@@ -8,6 +8,7 @@
     --accent: #B26A1B; --accent-soft: #F1E2C8; --accent-ink: #77450F;
     --intl: #2E7D74; --intl-soft: #D9EBE8; --intl-ink: #1C5751;
     --local: #A65D2A; --local-soft: #F3E3D4; --local-ink: #7A3F16;
+    --new: #4C7A3A; --new-soft: #E2EEDB; --new-ink: #345626;
     --shadow: 0 1px 2px rgba(41,35,28,.05), 0 10px 30px rgba(41,35,28,.08);
     --radius: 14px;
     --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -19,6 +20,7 @@
       --accent: #DDA24A; --accent-soft: #382C17; --accent-ink: #EEC783;
       --intl: #6FC0B4; --intl-soft: #1C302D; --intl-ink: #9CD8CE;
       --local: #E0965E; --local-soft: #38271A; --local-ink: #F0BE90;
+      --new: #8DBE79; --new-soft: #26311D; --new-ink: #AFD69B;
       --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 32px rgba(0,0,0,.4);
     }
   }
@@ -28,6 +30,7 @@
     --accent: #B26A1B; --accent-soft: #F1E2C8; --accent-ink: #77450F;
     --intl: #2E7D74; --intl-soft: #D9EBE8; --intl-ink: #1C5751;
     --local: #A65D2A; --local-soft: #F3E3D4; --local-ink: #7A3F16;
+    --new: #4C7A3A; --new-soft: #E2EEDB; --new-ink: #345626;
     --shadow: 0 1px 2px rgba(41,35,28,.05), 0 10px 30px rgba(41,35,28,.08);
   }
   :root[data-theme="dark"] {
@@ -36,6 +39,7 @@
     --accent: #DDA24A; --accent-soft: #382C17; --accent-ink: #EEC783;
     --intl: #6FC0B4; --intl-soft: #1C302D; --intl-ink: #9CD8CE;
     --local: #E0965E; --local-soft: #38271A; --local-ink: #F0BE90;
+    --new: #8DBE79; --new-soft: #26311D; --new-ink: #AFD69B;
     --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 32px rgba(0,0,0,.4);
   }
   * { box-sizing: border-box; }
@@ -54,46 +58,61 @@
   .brand p { margin: 1px 0 0; font-size: .8rem; color: var(--ink-soft); }
   .theme-btn { border: 1px solid var(--line); background: var(--surface); color: var(--ink-soft); width: 40px; height: 40px; border-radius: 11px; cursor: pointer; font-size: 1rem; display: grid; place-items: center; flex: none; transition: border-color .15s,color .15s,transform .1s; }
   .theme-btn:hover { color: var(--ink); border-color: var(--accent); }
-  .theme-btn:active { transform: scale(.94); }
 
   .meta-row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; }
   .chip { display: inline-flex; align-items: center; gap: 7px; background: var(--surface); border: 1px solid var(--line); border-radius: 99px; padding: 7px 14px; font-size: .82rem; color: var(--ink-soft); box-shadow: var(--shadow); }
   .chip b { color: var(--ink); font-weight: 650; font-variant-numeric: tabular-nums; }
 
-  .tabs { display: flex; gap: 6px; background: var(--surface); border: 1px solid var(--line); padding: 5px; border-radius: 13px; margin-bottom: 18px; box-shadow: var(--shadow); }
+  .tabs { display: flex; gap: 6px; background: var(--surface); border: 1px solid var(--line); padding: 5px; border-radius: 13px; margin-bottom: 14px; box-shadow: var(--shadow); }
   .tabs button { flex: 1; border: none; background: transparent; color: var(--ink-soft); cursor: pointer; font-family: inherit; padding: 10px 12px; border-radius: 9px; font-size: .9rem; font-weight: 600; transition: all .15s; display: flex; align-items: center; justify-content: center; gap: 8px; }
   .tabs button .n { font-variant-numeric: tabular-nums; background: var(--surface-2); border-radius: 99px; padding: 1px 9px; font-size: .8rem; }
   .tabs button[aria-selected="true"] { background: var(--surface-2); color: var(--ink); box-shadow: var(--shadow); }
   .tabs button[aria-selected="true"][data-tab="only"] { color: var(--intl-ink); }
   .tabs button[aria-selected="true"][data-tab="local"] { color: var(--local-ink); }
 
-  .controls { display: flex; gap: 10px; margin-bottom: 16px; }
+  .controls { display: flex; gap: 10px; margin-bottom: 12px; }
   #search { flex: 1; border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 11px; padding: 11px 15px; font-size: .95rem; font-family: inherit; }
   #search:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+
+  .hidebar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 10px 13px; margin-bottom: 18px; box-shadow: var(--shadow); }
+  .hidebar .hl { font-size: .8rem; color: var(--ink-soft); font-weight: 600; }
+  .wchip { display: inline-flex; align-items: center; gap: 6px; background: var(--surface-2); border: 1px solid var(--line); border-radius: 99px; padding: 3px 5px 3px 11px; font-size: .8rem; color: var(--ink); }
+  .wchip button { border: none; background: transparent; color: var(--ink-faint); cursor: pointer; font-size: .95rem; line-height: 1; padding: 2px 4px; border-radius: 50%; }
+  .wchip button:hover { color: var(--local); background: var(--local-soft); }
+  #wordin { border: 1px dashed var(--line); background: transparent; color: var(--ink); border-radius: 99px; padding: 5px 12px; font-size: .8rem; font-family: inherit; min-width: 150px; flex: 1; }
+  #wordin:focus { outline: none; border-color: var(--accent); border-style: solid; }
+  .linkbtn { margin-left: auto; border: none; background: transparent; color: var(--ink-faint); font-size: .8rem; cursor: pointer; font-family: inherit; text-decoration: underline; }
+  .linkbtn:hover { color: var(--accent); }
 
   .list { display: grid; gap: 14px; }
   .list.cards { grid-template-columns: repeat(auto-fill, minmax(195px, 1fr)); align-items: start; }
 
-  /* Tarjeta estilo Mercado Libre: imagen grande arriba */
-  .pcard { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; box-shadow: var(--shadow); display: flex; flex-direction: column; transition: transform .12s, border-color .15s; }
+  .pcard { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; box-shadow: var(--shadow); display: flex; flex-direction: column; transition: transform .12s, border-color .15s; position: relative; }
   .pcard:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .pcard.hiddenrow { opacity: .5; }
   .imgwrap { aspect-ratio: 1 / 1; background: #fff; display: grid; place-items: center; position: relative; }
   .imgwrap img { width: 100%; height: 100%; object-fit: contain; padding: 10px; }
   .imgwrap .ph { font-size: 2.6rem; color: #d9cdbf; }
-  .badge { font-size: .66rem; font-weight: 650; text-transform: uppercase; letter-spacing: .05em; padding: 4px 9px; border-radius: 99px; display: inline-flex; align-items: center; gap: 4px; }
+  .toppills { position: absolute; top: 9px; left: 9px; display: flex; gap: 5px; flex-wrap: wrap; max-width: calc(100% - 52px); }
+  .badge { font-size: .64rem; font-weight: 650; text-transform: uppercase; letter-spacing: .05em; padding: 4px 9px; border-radius: 99px; display: inline-flex; align-items: center; gap: 4px; box-shadow: var(--shadow); }
   .badge.intl { background: var(--intl-soft); color: var(--intl-ink); }
-  .imgwrap .badge { position: absolute; top: 9px; left: 9px; box-shadow: var(--shadow); }
+  .badge.new { background: var(--new-soft); color: var(--new-ink); }
+  .hidebtn { position: absolute; top: 8px; right: 8px; width: 28px; height: 28px; border-radius: 50%; border: none; background: rgba(255,255,255,.92); color: #8a3b1c; cursor: pointer; font-size: .8rem; display: grid; place-items: center; box-shadow: var(--shadow); transition: transform .1s, background .15s; }
+  .hidebtn:hover { background: #fff; transform: scale(1.08); }
+  .restorebtn { position: absolute; top: 8px; right: 8px; border: none; background: var(--accent); color: #fff; border-radius: 8px; font-size: .72rem; padding: 5px 9px; cursor: pointer; box-shadow: var(--shadow); }
   .pbody { padding: 12px 14px 15px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
   .ptitle { font-size: .9rem; font-weight: 500; line-height: 1.35; color: var(--ink); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 2.45em; }
+  .pmeta { font-size: .7rem; color: var(--ink-faint); margin-top: -4px; }
   .pprice { font-size: 1.42rem; font-weight: 680; letter-spacing: -.02em; font-variant-numeric: tabular-nums; margin-top: auto; }
   .pprice small { font-size: .6rem; color: var(--ink-faint); font-weight: 600; margin-left: 5px; text-transform: uppercase; letter-spacing: .04em; }
   .go { text-decoration: none; background: var(--accent); color: #FFF; font-size: .8rem; font-weight: 600; padding: 8px 14px; border-radius: 9px; text-align: center; transition: filter .15s, transform .1s; }
   .go:hover { filter: brightness(1.07); } .go:active { transform: scale(.97); }
 
-  /* Comparación lado a lado */
-  .cmp { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
-  .cmp-head { display: flex; justify-content: space-between; align-items: center; padding: 9px 15px; background: var(--surface-2); border-bottom: 1px solid var(--line); font-size: .76rem; color: var(--ink-soft); }
+  .cmp { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; position: relative; }
+  .cmp.hiddenrow { opacity: .5; }
+  .cmp-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 9px 15px; background: var(--surface-2); border-bottom: 1px solid var(--line); font-size: .76rem; color: var(--ink-soft); }
   .cmp-head b { color: var(--ink); font-variant-numeric: tabular-nums; }
+  .cmp-head .hidebtn, .cmp-head .restorebtn { position: static; }
   .cmp-body { display: grid; grid-template-columns: 1fr 1fr; }
   .side { padding: 15px; min-width: 0; display: flex; flex-direction: column; gap: 9px; }
   .side:first-child { border-right: 1px solid var(--line); }
@@ -144,6 +163,7 @@
   <div class="meta-row">
     <span class="chip"><b id="c-only">0</b> solo importados</span>
     <span class="chip"><b id="c-local">0</b> también local</span>
+    <span class="chip"><b id="c-new">0</b> nuevos hoy</span>
     <span class="chip">Actualizado: <b id="c-date">—</b></span>
   </div>
 
@@ -156,12 +176,19 @@
     <input id="search" type="text" placeholder="Filtrar por nombre…" autocomplete="off" />
   </div>
 
+  <div class="hidebar">
+    <span class="hl">🚫 Ocultar:</span>
+    <span id="words"></span>
+    <input id="wordin" type="text" placeholder="palabra a ocultar + Enter (ej: cosmética)" autocomplete="off" />
+    <button class="linkbtn" id="showhidden"></button>
+  </div>
+
   <div class="list" id="list"></div>
 
   <section class="about">
-    <h3>Cómo se decide</h3>
-    <p>Para cada producto importado, el radar lo busca también en la oferta normal de Mercado Libre y compara los títulos (qué tan parecidas son las palabras) y el precio. Si encuentra uno bastante parecido en el país, lo pasa a <b>"También local"</b> con la publicación local al lado, para que compares. Si no, queda en <b>"Solo importados"</b>.</p>
-    <p>Es una estimación: nunca coinciden exactamente el título, el vendedor ni la foto, así que cada par muestra un <b>puntaje de parecido</b>. A mayor puntaje, más probable que sea el mismo producto.</p>
+    <h3>Cómo funciona</h3>
+    <p>El radar corre en tu PC, acumula día a día los importados de bazar y cocina, y marca como <b>Nuevo</b> los del día. Para cada uno, busca si el mismo producto también se vende en el país y lo separa en las dos pestañas, con el <b>puntaje de parecido</b>.</p>
+    <p>Con <b>🚫</b> en cada producto lo ocultás para siempre; con <b>"Ocultar"</b> escondés todo lo que contenga una palabra (ej: <i>cosmética</i>). Tus ocultos se guardan en este navegador.</p>
   </section>
 
   <footer>Radar Importados · se actualiza desde tu PC</footer>
@@ -171,25 +198,38 @@
 (function () {
   var SAMPLE = {
     generated_at: "2026-07-24T09:00:00-03:00",
-    count_only: 2, count_local: 1,
     only_import: [
-      { title: "Set Utensilios Cocina Bambú Cuchara Tenedor Espátula Base X4", price: 6929, currency: "ARS", permalink: "https://articulo.mercadolibre.com.ar/MLA-demo-bambu", thumbnail: "" },
-      { title: "Pelador de Verduras Mango de Madera Ergonómico", price: 8990, currency: "ARS", permalink: "https://articulo.mercadolibre.com.ar/MLA-demo-pelador", thumbnail: "" }
+      { title: "Set Utensilios Cocina Bambú Cuchara Tenedor Espátula Base X4", price: 6929, currency: "ARS", permalink: "https://articulo.mercadolibre.com.ar/MLA-demo-bambu", thumbnail: "", first_seen: "2026-07-24", nuevo: true },
+      { title: "Pelador de Verduras Mango de Madera Ergonómico", price: 8990, currency: "ARS", permalink: "https://articulo.mercadolibre.com.ar/MLA-demo-pelador", thumbnail: "", first_seen: "2026-07-22", nuevo: false }
     ],
     also_local: [
       { score: 0.72,
-        import: { title: "Colador Chino Cónico Acero Inoxidable 20cm", price: 24500, currency: "ARS", permalink: "https://articulo.mercadolibre.com.ar/MLA-demo-colador-i", thumbnail: "" },
+        import: { title: "Colador Chino Cónico Acero Inoxidable 20cm", price: 24500, currency: "ARS", permalink: "https://articulo.mercadolibre.com.ar/MLA-demo-colador-i", thumbnail: "", first_seen: "2026-07-24", nuevo: true },
         local:  { title: "Colador Chino Acero Inoxidable 20 cm Cocina", price: 18700, currency: "ARS", permalink: "https://articulo.mercadolibre.com.ar/MLA-demo-colador-l", thumbnail: "" } }
     ]
   };
 
-  var data = null, isDemo = false, tab = "only";
+  var data = null, isDemo = false, tab = "only", showHidden = false;
+  var hiddenIds, hiddenWords;
   var listEl = document.getElementById("list");
   var searchEl = document.getElementById("search");
 
+  function load(key, def) { try { return JSON.parse(localStorage.getItem(key)) || def; } catch (e) { return def; } }
+  function save(key, val) { try { localStorage.setItem(key, JSON.stringify(val)); } catch (e) {} }
+  hiddenIds = load("radar.hiddenIds", []);
+  hiddenWords = load("radar.hiddenWords", []);
+
+  function norm(s) { return (s || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase(); }
   function fmtDate(s) { try { var d = new Date(s); return isNaN(d) ? s : d.toLocaleString("es-AR", { day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit" }); } catch (e) { return s; } }
+  function fmtDay(s) { try { var d = new Date(s + "T12:00:00"); return isNaN(d) ? s : d.toLocaleDateString("es-AR", { day: "2-digit", month: "short" }); } catch (e) { return s; } }
   function fmtPrice(n) { try { return new Intl.NumberFormat("es-AR").format(n); } catch (e) { return String(n); } }
   function priceHTML(it) { return it.price != null ? "$ " + fmtPrice(it.price) + "<small>" + (it.currency || "ARS") + "</small>" : "<small>sin precio</small>"; }
+
+  function isHidden(it) {
+    if (hiddenIds.indexOf(it.permalink) >= 0) return true;
+    var t = norm(it.title);
+    return hiddenWords.some(function (w) { return w && t.indexOf(w) >= 0; });
+  }
 
   function imgOrPh(src) {
     if (src) { var img = document.createElement("img"); img.src = src; img.alt = ""; img.loading = "lazy";
@@ -198,15 +238,25 @@
   }
   function goLink(it, cls) { var a = document.createElement("a"); a.className = "go" + (cls ? " " + cls : ""); a.href = it.permalink; a.target = "_blank"; a.rel = "noopener noreferrer"; a.textContent = "Ver en ML →"; return a; }
 
-  function cardOnly(it) {
-    var card = document.createElement("div"); card.className = "pcard";
+  function hideBtn(it) { var b = document.createElement("button"); b.className = "hidebtn"; b.title = "No me interesa"; b.textContent = "🚫";
+    b.addEventListener("click", function (e) { e.stopPropagation(); hiddenIds.push(it.permalink); save("radar.hiddenIds", hiddenIds); paint(); }); return b; }
+  function restoreBtn(it) { var b = document.createElement("button"); b.className = "restorebtn"; b.textContent = "Restaurar";
+    b.addEventListener("click", function (e) { e.stopPropagation(); hiddenIds = hiddenIds.filter(function (x) { return x !== it.permalink; }); save("radar.hiddenIds", hiddenIds); paint(); }); return b; }
+
+  function cardOnly(it, hidden) {
+    var card = document.createElement("div"); card.className = "pcard" + (hidden ? " hiddenrow" : "");
     var iw = document.createElement("div"); iw.className = "imgwrap";
     iw.appendChild(imgOrPh(it.thumbnail));
-    var bd = document.createElement("span"); bd.className = "badge intl"; bd.textContent = "✈ Solo importado"; iw.appendChild(bd);
+    var pills = document.createElement("div"); pills.className = "toppills";
+    var b1 = document.createElement("span"); b1.className = "badge intl"; b1.textContent = "✈ Importado"; pills.appendChild(b1);
+    if (it.nuevo) { var b2 = document.createElement("span"); b2.className = "badge new"; b2.textContent = "Nuevo"; pills.appendChild(b2); }
+    iw.appendChild(pills);
+    iw.appendChild(hidden ? restoreBtn(it) : hideBtn(it));
     var body = document.createElement("div"); body.className = "pbody";
     var t = document.createElement("div"); t.className = "ptitle"; t.textContent = it.title;
+    var m = document.createElement("div"); m.className = "pmeta"; m.textContent = it.first_seen ? (it.nuevo ? "Nuevo hoy" : "Desde " + fmtDay(it.first_seen)) : "";
     var p = document.createElement("div"); p.className = "pprice"; p.innerHTML = priceHTML(it);
-    body.appendChild(t); body.appendChild(p); body.appendChild(goLink(it));
+    body.appendChild(t); if (m.textContent) body.appendChild(m); body.appendChild(p); body.appendChild(goLink(it));
     card.appendChild(iw); card.appendChild(body); return card;
   }
 
@@ -220,11 +270,12 @@
     return s;
   }
 
-  function cmpRow(pair) {
-    var box = document.createElement("div"); box.className = "cmp";
+  function cmpRow(pair, hidden) {
+    var box = document.createElement("div"); box.className = "cmp" + (hidden ? " hiddenrow" : "");
     var head = document.createElement("div"); head.className = "cmp-head";
     var pct = Math.round((pair.score || 0) * 100);
-    head.innerHTML = '<span>Comparación</span><span>parecido <b>' + pct + '%</b></span>';
+    var left = document.createElement("span"); left.innerHTML = (pair["import"].nuevo ? "🟢 Nuevo · " : "") + "parecido <b>" + pct + "%</b>";
+    head.appendChild(left); head.appendChild(hidden ? restoreBtn(pair["import"]) : hideBtn(pair["import"]));
     var body = document.createElement("div"); body.className = "cmp-body";
     body.appendChild(sideEl(pair["import"], "imp"));
     body.appendChild(sideEl(pair.local, "loc"));
@@ -233,28 +284,48 @@
 
   function showEmpty(msg) { var e = document.createElement("div"); e.className = "empty"; e.innerHTML = '<div class="ico">🔍</div><p></p>'; e.querySelector("p").textContent = msg; listEl.appendChild(e); }
 
+  function renderWords() {
+    var box = document.getElementById("words"); box.innerHTML = "";
+    hiddenWords.forEach(function (w, i) {
+      var chip = document.createElement("span"); chip.className = "wchip"; chip.textContent = w;
+      var x = document.createElement("button"); x.textContent = "×"; x.title = "Quitar";
+      x.addEventListener("click", function () { hiddenWords.splice(i, 1); save("radar.hiddenWords", hiddenWords); renderWords(); paint(); });
+      chip.appendChild(x); box.appendChild(chip);
+    });
+  }
+
   function paint() {
     if (!data) return;
     var only = data.only_import || [], local = data.also_local || [];
-    document.getElementById("c-only").textContent = only.length;
-    document.getElementById("c-local").textContent = local.length;
-    document.getElementById("t-only").textContent = only.length;
-    document.getElementById("t-local").textContent = local.length;
+    var visOnly = only.filter(function (it) { return !isHidden(it); });
+    var visLocal = local.filter(function (p) { return !isHidden(p["import"]); });
+    var newCount = visOnly.filter(function (it) { return it.nuevo; }).length + visLocal.filter(function (p) { return p["import"].nuevo; }).length;
+
+    document.getElementById("c-only").textContent = visOnly.length;
+    document.getElementById("c-local").textContent = visLocal.length;
+    document.getElementById("c-new").textContent = newCount;
+    document.getElementById("t-only").textContent = visOnly.length;
+    document.getElementById("t-local").textContent = visLocal.length;
     document.getElementById("c-date").textContent = fmtDate(data.generated_at);
     document.body.classList.toggle("is-demo", isDemo);
+
+    var hiddenTotal = only.filter(isHidden).length + local.filter(function (p) { return isHidden(p["import"]); }).length;
+    var sh = document.getElementById("showhidden");
+    sh.textContent = hiddenTotal ? (showHidden ? "Ocultar los descartados" : "Ver " + hiddenTotal + " descartado" + (hiddenTotal > 1 ? "s" : "")) : "";
+    sh.style.display = hiddenTotal ? "" : "none";
 
     var q = searchEl.value.trim().toLowerCase();
     listEl.className = "list" + (tab === "only" ? " cards" : "");
     listEl.innerHTML = "";
 
     if (tab === "only") {
-      var items = only.filter(function (it) { return !q || (it.title || "").toLowerCase().indexOf(q) >= 0; });
-      if (!items.length) { showEmpty(only.length ? "Ningún importado coincide con el filtro." : "Todavía no hay importados. Corré el radar en tu PC."); return; }
-      items.forEach(function (it) { listEl.appendChild(cardOnly(it)); });
+      var arr = (showHidden ? only.filter(isHidden) : visOnly).filter(function (it) { return !q || (it.title || "").toLowerCase().indexOf(q) >= 0; });
+      if (!arr.length) { showEmpty(showHidden ? "No hay descartados." : (only.length ? "Nada coincide con el filtro." : "Todavía no hay importados. Corré el radar en tu PC.")); return; }
+      arr.forEach(function (it) { listEl.appendChild(cardOnly(it, showHidden)); });
     } else {
-      var pairs = local.filter(function (p) { return !q || (p["import"].title || "").toLowerCase().indexOf(q) >= 0 || (p.local.title || "").toLowerCase().indexOf(q) >= 0; });
-      if (!pairs.length) { showEmpty(local.length ? "Ninguno coincide con el filtro." : "No se encontraron productos que también estén a la venta en el país."); return; }
-      pairs.forEach(function (p) { listEl.appendChild(cmpRow(p)); });
+      var pairs = (showHidden ? local.filter(function (p) { return isHidden(p["import"]); }) : visLocal).filter(function (p) { return !q || (p["import"].title || "").toLowerCase().indexOf(q) >= 0 || (p.local.title || "").toLowerCase().indexOf(q) >= 0; });
+      if (!pairs.length) { showEmpty(showHidden ? "No hay descartados." : (local.length ? "Nada coincide con el filtro." : "No se encontraron productos que también estén a la venta en el país.")); return; }
+      pairs.forEach(function (p) { listEl.appendChild(cmpRow(p, showHidden)); });
     }
   }
 
@@ -266,6 +337,14 @@
     });
   });
   searchEl.addEventListener("input", paint);
+  document.getElementById("showhidden").addEventListener("click", function () { showHidden = !showHidden; paint(); });
+  document.getElementById("wordin").addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+      var w = norm(this.value.trim());
+      if (w && hiddenWords.indexOf(w) < 0) { hiddenWords.push(w); save("radar.hiddenWords", hiddenWords); renderWords(); paint(); }
+      this.value = "";
+    }
+  });
 
   var root = document.documentElement;
   try { var sv = localStorage.getItem("radar.theme"); if (sv) root.setAttribute("data-theme", sv); } catch (e) {}
@@ -275,6 +354,7 @@
     try { localStorage.setItem("radar.theme", next); } catch (e) {}
   });
 
+  renderWords();
   fetch("data.json", { cache: "no-store" })
     .then(function (r) { if (!r.ok) throw 0; return r.json(); })
     .then(function (j) {

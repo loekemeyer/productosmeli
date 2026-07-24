@@ -1,57 +1,65 @@
 # Radar Importados — versión para tu PC (Windows, con navegador)
 
-Mercado Libre bloquea la lectura automática incluso desde tu casa cuando se hace
-con un programa "pelado". Por eso esta versión usa un **navegador real**
-(Playwright) que ML acepta como una persona. Corre en tu PC, lee los importados
-de bazar/cocina con envío internacional y **sube el resultado al repo**, así el
-panel web **https://loekemeyer.github.io/productosmeli/** se actualiza solo.
+Corre en tu PC (tu internet no está bloqueado por ML), acumula día a día los
+importados de bazar/cocina con envío internacional, compara cada uno con la
+oferta local, y **sube el resultado al repo** para que el panel web se actualice:
+**https://loekemeyer.github.io/productosmeli/**
 
 No necesita nada de Mercado Libre (ni app, ni CUIT, ni token de ML).
 
 ## Instalación (una sola vez)
 
 ### 1. Python
-Ya lo tenés instalado. (Si no: <https://www.python.org/downloads/>, tildando
-**"Add python.exe to PATH"**.)
+Ya lo tenés. (Si no: <https://www.python.org/downloads/>, tildando *Add to PATH*.)
 
-### 2. Token de GitHub
-Ya tenés el token `radar` con **Contents: Read and write**. Tenelo a mano.
+### 2. Playwright + navegador (una sola vez)
+Abrí tu carpeta Radar en el Explorador, clic en la barra de direcciones,
+escribí `cmd` y Enter. En esa consola:
+```
+pip install playwright
+python -m playwright install chromium
+```
 
-### 3. Descargar los archivos
-Descargá estos y ponelos **juntos** en una carpeta (ej. `C:\Radar\`), con el
-botón de descarga ⤓ ("Download raw file") de cada uno:
+### 3. Token de GitHub
+Usá tu token con **Contents: Read and write** sobre `productosmeli`.
+
+### 4. Archivos (en la misma carpeta)
+Descargá de la carpeta `local` del repo:
 - `radar_browser.py`
 - `radar-navegador.bat`
-- `instalar-navegador.bat`
+- `no-me-interesa.txt` (opcional)
 
-### 4. Instalar el navegador (una sola vez)
-Doble clic en **`instalar-navegador.bat`**. Baja Playwright + un Chrome (~150 MB).
-Esperá a que diga "Listo".
+Pegá tu token dentro de `radar-navegador.bat` (clic derecho → Editar).
 
-### 5. Pegar tu token
-Clic derecho en **`radar-navegador.bat`** → *Editar*. Reemplazá
-`PEGA_TU_TOKEN_DE_GITHUB_ACA` por tu token. Guardá.
+### 5. Probar
+Doble clic en `radar-navegador.bat` (o desde la consola: `python radar_browser.py`).
+Se abre Chrome, escanea, compara y sube. Si pide verificación, resolvéla una vez.
 
-### 6. Probar
-Doble clic en **`radar-navegador.bat`**.
-- Se abre una ventana de Chrome y navega a Mercado Libre.
-- **Si aparece una verificación** ("no soy un robot"), resolvéla ahí en la
-  ventana. Queda guardada: las próximas veces no debería volver a pedirla.
-- Al terminar, la consola dice `OK · N artículos` y `subido a GitHub`.
-- En 1–2 minutos, mirá el panel: <https://loekemeyer.github.io/productosmeli/>
-
-## Que corra solo cada día (Programador de tareas)
+## Que corra solo TODOS LOS DÍAS a las 8:30
 
 1. Abrí **Programador de tareas** (menú Inicio).
-2. *Crear tarea básica…* → nombre `Radar Importados`.
-3. Desencadenador: **Diariamente** → hora (ej. 09:00).
+2. **Crear tarea básica…** → nombre `Radar Importados` → Siguiente.
+3. Desencadenador: **Diariamente** → Siguiente → hora **08:30:00** → Siguiente.
 4. Acción: **Iniciar un programa** → *Examinar* → elegí **`radar-navegador.bat`**.
-5. Finalizar. (Corre si la PC está encendida.)
+5. Finalizar. (Corre a esa hora si la PC está encendida.)
+
+> Tip: en las propiedades de la tarea podés tildar "Ejecutar aunque el usuario
+> no haya iniciado sesión" y "Ejecutar con los privilegios más altos".
+
+## Descartar lo que no te interesa
+
+- **En el panel web** (lo más fácil):
+  - Botón **🚫** en cada producto → lo oculta para siempre.
+  - Caja **"🚫 Ocultar"** → escribí una palabra (ej. `cosmética`) y Enter: se
+    esconde todo lo que la contenga. Se guarda en tu navegador.
+- **Permanente y en todos lados** (opcional): editá `no-me-interesa.txt`
+  (una palabra por línea). El radar excluye esos productos de raíz en cada corrida.
+
+## Acumulación
+
+El radar recuerda lo de días anteriores y marca lo nuevo como **"Nuevo"**.
+Los artículos que no se ven por más de 60 días se van soltando solos para que la
+lista no crezca infinito.
 
 ## Personalizar
-- **Qué busca**: editá `LISTING_URLS` en `radar_browser.py`. Para otra categoría,
-  entrá a ML, filtrá por *Envío internacional* y pegá la URL.
-
-## Si algo no anda
-- Si la ventana queda pidiendo verificación y no la podés pasar: avisale a Claude.
-- Si dice `0 artículos`: contale a Claude para ajustar los selectores.
+- **Qué busca**: editá `LISTING_URLS` en `radar_browser.py`.
