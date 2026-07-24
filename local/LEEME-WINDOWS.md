@@ -1,52 +1,57 @@
-# Radar Importados — versión para tu PC (Windows)
+# Radar Importados — versión para tu PC (Windows, con navegador)
 
-Esta versión corre en **tu computadora** (tu internet de casa, donde Mercado
-Libre no bloquea) y **sube los resultados al repositorio**, así el panel web
-**https://loekemeyer.github.io/productosmeli/** se actualiza solo.
+Mercado Libre bloquea la lectura automática incluso desde tu casa cuando se hace
+con un programa "pelado". Por eso esta versión usa un **navegador real**
+(Playwright) que ML acepta como una persona. Corre en tu PC, lee los importados
+de bazar/cocina con envío internacional y **sube el resultado al repo**, así el
+panel web **https://loekemeyer.github.io/productosmeli/** se actualiza solo.
 
-No necesita cuenta de desarrollador, ni CUIT, ni token de Mercado Libre.
+No necesita nada de Mercado Libre (ni app, ni CUIT, ni token de ML).
 
 ## Instalación (una sola vez)
 
-### 1. Instalar Python
-- Bajalo de <https://www.python.org/downloads/>
-- Al instalarlo, **tildá la casilla "Add python.exe to PATH"** (abajo del instalador).
-- Terminá la instalación.
+### 1. Python
+Ya lo tenés instalado. (Si no: <https://www.python.org/downloads/>, tildando
+**"Add python.exe to PATH"**.)
 
-### 2. Token de GitHub (con permiso de escritura)
-Necesitás un token con permiso **Contents: Read and write**.
-- Andá a <https://github.com/settings/personal-access-tokens>
-- Editá el token `radar` que ya creaste (o creá uno nuevo) y en
-  *Permissions → Repository permissions* agregá **Contents → Read and write**.
-- Copiá el token (`github_pat_...`). Si lo regenerás, usá el valor nuevo.
+### 2. Token de GitHub
+Ya tenés el token `radar` con **Contents: Read and write**. Tenelo a mano.
 
 ### 3. Descargar los archivos
-- Descargá **`radar.py`** y **`radar.bat`** (esta carpeta `local` del repo) y
-  ponelos juntos en una carpeta, por ejemplo `C:\Radar\`.
-  (En GitHub: entrá a cada archivo → botón *Download raw file*.)
+Descargá estos y ponelos **juntos** en una carpeta (ej. `C:\Radar\`), con el
+botón de descarga ⤓ ("Download raw file") de cada uno:
+- `radar_browser.py`
+- `radar-navegador.bat`
+- `instalar-navegador.bat`
 
-### 4. Pegar tu token
-- Abrí **`radar.bat`** con el Bloc de notas (clic derecho → *Editar*).
-- Reemplazá `PEGA_TU_TOKEN_DE_GITHUB_ACA` por tu token. Guardá.
+### 4. Instalar el navegador (una sola vez)
+Doble clic en **`instalar-navegador.bat`**. Baja Playwright + un Chrome (~150 MB).
+Esperá a que diga "Listo".
 
-### 5. Probar
-- Hacé **doble clic en `radar.bat`**.
-- Debería decir cuántos artículos encontró y "subido a GitHub".
+### 5. Pegar tu token
+Clic derecho en **`radar-navegador.bat`** → *Editar*. Reemplazá
+`PEGA_TU_TOKEN_DE_GITHUB_ACA` por tu token. Guardá.
+
+### 6. Probar
+Doble clic en **`radar-navegador.bat`**.
+- Se abre una ventana de Chrome y navega a Mercado Libre.
+- **Si aparece una verificación** ("no soy un robot"), resolvéla ahí en la
+  ventana. Queda guardada: las próximas veces no debería volver a pedirla.
+- Al terminar, la consola dice `OK · N artículos` y `subido a GitHub`.
 - En 1–2 minutos, mirá el panel: <https://loekemeyer.github.io/productosmeli/>
 
 ## Que corra solo cada día (Programador de tareas)
 
-1. Abrí **Programador de tareas** (buscalo en el menú Inicio).
-2. *Crear tarea básica…* → nombre: `Radar Importados`.
-3. Desencadenador: **Diariamente** → elegí la hora (ej. 09:00).
-4. Acción: **Iniciar un programa** → *Examinar* → elegí tu `radar.bat`.
-5. Finalizar. Listo: corre solo a esa hora (si la PC está encendida).
+1. Abrí **Programador de tareas** (menú Inicio).
+2. *Crear tarea básica…* → nombre `Radar Importados`.
+3. Desencadenador: **Diariamente** → hora (ej. 09:00).
+4. Acción: **Iniciar un programa** → *Examinar* → elegí **`radar-navegador.bat`**.
+5. Finalizar. (Corre si la PC está encendida.)
 
 ## Personalizar
-- **Qué busca**: editá la lista `LISTING_URLS` en `radar.py`. Para agregar otra
-  categoría, entrá a ML, filtrá por *Envío internacional* y pegá la URL.
+- **Qué busca**: editá `LISTING_URLS` en `radar_browser.py`. Para otra categoría,
+  entrá a ML, filtrá por *Envío internacional* y pegá la URL.
 
 ## Si algo no anda
-- Si dice **0 artículos** o **captcha**: el programa sube un archivo
-  `debug_page.html` al repo. Avisale a Claude y con eso ajusta el lector.
-- Si dice que no encuentra `python`: reinstalá Python tildando *Add to PATH*.
+- Si la ventana queda pidiendo verificación y no la podés pasar: avisale a Claude.
+- Si dice `0 artículos`: contale a Claude para ajustar los selectores.
