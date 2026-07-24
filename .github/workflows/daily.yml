@@ -5,6 +5,8 @@ on:
   schedule:
     - cron: "0 12 * * *"   # 12:00 UTC = 09:00 Argentina (UTC-3)
   workflow_dispatch: {}     # botón para ejecutarlo manualmente cuando quieras
+  push:
+    branches: [main]        # también corre en cada push a main (arranca solo)
 
 permissions:
   contents: write           # para commitear data.json
