@@ -97,21 +97,37 @@ def _clean(s):
 # --------------------------------------------------------------------------- #
 # Modo SCRAPE — recorre listados ya filtrados por envío internacional
 # --------------------------------------------------------------------------- #
+_PROD_LINK = re.compile(
+    r'href="(https://(?:articulo\.)?(?:www\.)?mercadolibre\.com\.ar/'
+    r'(?:MLA-?\d|p/MLA)[^"#?]*)"'
+)
+
+
+def _split_blocks(body):
+    """Divide el HTML en bloques-tarjeta probando varios envoltorios de ML."""
+    for marker in ("ui-search-layout__item", "poly-card__content",
+                   "poly-card", "ui-search-result__wrapper"):
+        parts = re.split(marker, body)
+        if len(parts) > 1:
+            return parts[1:]
+    return []
+
+
 def _parse_cards(body):
     """Extrae (title, link, price, thumbnail) de cada tarjeta del listado."""
     out = []
-    # Cada resultado viene envuelto en <li class="ui-search-layout__item ...">.
-    blocks = re.split(r'ui-search-layout__item', body)[1:]
-    for block in blocks:
-        # Link + título: el markup moderno usa la clase poly-component__title;
-        # el clásico usa ui-search-item__title. Probamos ambos.
-        link = _first(r'href="(https://(?:articulo|www)\.mercadolibre\.com\.ar/[^"]+)"', block) \
-            or _first(r'href="(https://[^"]*mercadolibre[^"]*/p/[^"]+)"', block)
+    for block in _split_blocks(body):
+        m = _PROD_LINK.search(block)
+        link = m.group(1) if m else ""
         title = _clean(
-            _first(r'poly-component__title[^>]*>([^<]+)<', block)
+            _first(r'poly-component__title"[^>]*>([^<]+)<', block)
             or _first(r'ui-search-item__title[^>]*>([^<]+)<', block)
-            or _first(r'<a[^>]*poly-component__title"[^>]*>([^<]+)</a>', block)
+            or _first(r'class="poly-component__title[^"]*"[^>]*>\s*<[^>]*>([^<]+)<', block)
+            or _first(r'<h[23][^>]*>([^<]{5,})<', block)
         )
+        # El título a veces viene como texto del propio <a> del link.
+        if not title and m:
+            title = _clean(_first(re.escape(m.group(0)) + r'[^>]*>([^<]+)<', block))
         price = _first(r'andes-money-amount__fraction[^>]*>([\d\.]+)<', block)
         thumb = _first(r'(?:data-src|src)="(https://http2\.mlstatic\.com/[^"]+)"', block)
         if not link or not title:
@@ -123,6 +139,33 @@ def _parse_cards(body):
             "thumbnail": thumb,
         })
     return out
+
+
+def _diagnose(body, status):
+    """Imprime pistas del HTML recibido para depurar sin acceso local a ML."""
+    low = body.lower()
+    title = _clean(_first(r'<title[^>]*>([^<]+)<', body)) or "(sin title)"
+    print("  [diag] HTTP", status, "· bytes", len(body), "· <title>:", title[:90])
+    markers = ["ui-search-layout__item", "poly-card", "poly-component__title",
+               "andes-money-amount__fraction", "ui-search-result", "ui-search-results"]
+    print("  [diag] marcadores:",
+          {k: low.count(k.lower()) for k in markers})
+    prod_links = len(_PROD_LINK.findall(body))
+    print("  [diag] links de producto detectados:", prod_links)
+    for flag in ("captcha", "robot", "unusual traffic", "access denied",
+                 "nada por acá", "no encontramos", "sin resultados"):
+        if flag in low:
+            print("  [diag] ⚠ posible bloqueo/vacío:", flag)
+    # Muestra el HTML alrededor del primer link de producto (para ver la tarjeta).
+    m = _PROD_LINK.search(body)
+    if m:
+        i = max(0, m.start() - 700)
+        print("  [diag] --- excerpt tarjeta ---")
+        print(body[i:m.start() + 700])
+        print("  [diag] --- fin excerpt ---")
+    else:
+        print("  [diag] --- primeros 1200 chars ---")
+        print(body[:1200])
 
 
 def _next_url(body):
@@ -150,6 +193,8 @@ def run_scrape():
                 break
             cards = _parse_cards(body)
             print(f"  · página {pages + 1}: {len(cards)} artículos")
+            if pages == 0 and (not cards or os.environ.get("RADAR_DEBUG")):
+                _diagnose(body, status)
             for c in cards:
                 # Todo lo de estas páginas ya está filtrado a envío internacional.
                 found[c["link"]] = {
